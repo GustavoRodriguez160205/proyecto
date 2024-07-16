@@ -25,7 +25,7 @@ const NavbarMenu = () => {
               alt="React Bootstrap logo"
             />
             {""}
-            Somos Futboleros
+          
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -89,19 +89,10 @@ const NavbarMenu = () => {
                 to="/login"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
-                Logearse
+                Loguearse
               </NavLink>
             </Button>
-            <Navbar.Brand href="#">
-              <img
-                src={carrito}
-                width="70"
-                height="70"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-              {""}
-            </Navbar.Brand>
+           
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -56,13 +56,10 @@ const Home = () => {
       </Carousel>
       <section class="tarjetas">
         <div class="container py-5">
-          <h1 id="titulo">NUETRAS INSTALACIONES - QUIENES SOMOS?</h1>
+          <h1 id="titulo">NUETRAS INSTALACIONES - ¿QUIÉNES SOMOS?</h1>
           <hr />
           <p>
-            El Club Fc - Somos Futboleros arranco hace 10 años, con un grupo de
-            Amigos justamente el dia del AMIGO ! ! !, y nos surgio esta idea la
-            cual era ir con nuestras familias o novias, jugar al futbol escuchar
-            musica y compartir alguna bebida. Lo demas es Historia.
+            Somos un grupo de amigos muy futboleros que hace 10 años decidimos reunir en un mismo lugar <strong>la pasión por el fútbol, los amigos y la familia</strong>. Lo demás, es historia.
           </p>
           <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4 py-5">
             <div class="col">
@@ -74,7 +71,7 @@ const Home = () => {
                   height="400px"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Estacionamiento</h5>
+                  <h5 class="card-title">ESTACIONAMIENTO</h5>
                   <p class="card-text">
                     Queremos ser el centro de referencia por excelencia con un
                     estacionamiento seguro y de gran capacidad. para lograrlo
@@ -94,7 +91,7 @@ const Home = () => {
                   height="400px"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Vestuarios</h5>
+                  <h5 class="card-title">VESTUARIOS</h5>
                   <p class="card-text">
                     Lo mas importante que destacamos es la intimidad de cada
                     equipo, por eso contamos con vestuarios de alta calidad

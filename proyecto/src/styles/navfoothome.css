@@ -1,0 +1,171 @@
+/*.card{
+ box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+ }        
+ 
+ /*.card:hover{
+   box-shadow: 0 8px 8px 0 #121212,0 8px 8px 0 #040404;
+   transform: translate(0px,5px);
+   -webkit-transform: translate(0px,5px);
+   -moz-transform:translate(0px,5px);
+   cursor: pointer; 
+ }
+
+
+           
+             
+     
+             
+/* img{
+  transition: .5s, color .10s;
+     -webkit-transition: .5s, color .10s;
+     -moz-transition: .5s, color .10s;
+}
+img:hover{
+  transform: scale3d(1.5, 1.5, 0.3);
+     -webkit-transform: scale3d(1.5, 1.5, 0.3);
+     -moz-transform: scale3d(1.5, 1.5, 0.3); 
+} */
+
+.Footer img{
+  transition: .5s, color .10s;
+     -webkit-transition: .5s, color .10s;
+     -moz-transition: .5s, color .10s;
+}
+.Footer img:hover{
+  transform: scale3d(1.5, 1.5, 0.3);
+  -webkit-transform: scale3d(1.5, 1.5, 0.3);
+  -moz-transform: scale3d(1.5, 1.5, 0.3)
+}
+              
+.carousel-item{
+ height: 500px;
+}
+
+.carousel-item img{
+ height: 100%;
+ transition: .5s, color .10s;
+     -webkit-transition: .5s, color .10s;
+     -moz-transition: .5s, color .10s;
+ 
+ 
+}
+.carousel-item img:hover{
+  transform: scale3d(1.5, 1.5, 0.3);
+  -webkit-transform: scale3d(1.5, 1.5, 0.3);
+  -moz-transform: scale3d(1.5, 1.5, 0.3); 
+}
+
+
+
+* {
+ margin: 0;
+ padding: 0;
+
+}
+
+.nav_ul li {
+ padding: 0 0.6rem;
+}
+
+.nav_ul a {
+ font-size: 1.05rem;
+ color: #000 !important;
+ font-weight: 400;
+ letter-spacing: 0.5px;
+}
+
+.btn1 {
+ border: 0;
+ padding: 0.5rem 1.8rem;
+ color: #fff;
+ background-color: #01193c;
+}
+
+.btn2 {
+ border: 0;
+ padding: 0.5rem 1.2rem;
+ color: #fff;
+ background-color: #f60838;
+}
+
+.Footer {
+ background-color: #f5f3f3;
+ padding: 2rem 0;
+ margin-top: 15rem;
+
+}
+
+.ft-1 h3 {
+ font-weight: 700;
+ font-family: cursive;
+ letter-spacing: 2px;
+ padding: 0.5rem 0;
+}
+
+.ft-1 span {
+ color: #205896 ;
+
+}
+
+.ft-1 p {
+ padding: 0rem 5rem 0.8rem 0;
+ font-weight: 500;
+ text-align: center;
+;
+}
+
+
+
+
+
+.Footer h5 {
+ color: #205896 ;
+}
+
+.ft-2 ul {
+ list-style: none;
+ padding-left: 0;
+}
+
+.ft-2 ul li {
+ padding: 0.35rem 0;
+ font-weight: 500;
+}
+
+.ft-2 ul a {
+ text-decoration: none;
+ color: #000;
+ font-size: 1.06rem;
+}
+
+.ft-3 p {
+ font-weight: 500;
+ padding: 0.1rem 0;
+ font-size: 1.06rem;
+}
+
+.ft-3 i {
+ padding-right: 0.5rem;
+}
+
+.Last-footer {
+background-color: #205896 ;
+
+
+ text-align: center;
+ padding: 1rem 0;
+}
+
+.Last-footer p {
+
+ margin-bottom: 0;
+ font-size: 1.2rem;
+ font-weight: 700;
+}
+
+.targetas{
+ background-color: aliceblue;
+}
+
+

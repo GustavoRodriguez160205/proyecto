@@ -1,0 +1,29 @@
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .custom-image {
+    margin: 0 auto;
+    max-width: 50%;
+    height: auto;
+  }
+  
+  .custom-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

@@ -10,7 +10,7 @@ import Error404 from "../pages/Error404";
 import Productos from "../pages/Productos";
 import Carrito from "../pages/Carrito";
 import Camiseta from "../pages/Camiseta";
-
+import Administrador from "../pages/Administrador";
 
 export const AppRouter = () => {
   return (
@@ -19,6 +19,7 @@ export const AppRouter = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/administrador" element={<Administrador />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/camiseta" element={<Camiseta />} />

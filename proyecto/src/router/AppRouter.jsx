@@ -16,10 +16,9 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <NavbarMenu />
-
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/administrador" element={<Administrador />} />
+        <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/camiseta" element={<Camiseta />} />

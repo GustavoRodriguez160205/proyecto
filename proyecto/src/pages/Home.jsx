@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import imagen6 from "../image/imagen6.png";
 import imagen7 from "../image/imagen7.jpg";
 import imagen8 from "../image/imagen8.jpg";
+import pasion from "../image/pasion.png";
 import video11 from "../image/video11.gif";
 import video12 from "../image/video12.gif";
 import video13 from "../image/video13.webp";
@@ -27,11 +28,9 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
+    <div className="carousel-container" style={{ margin: '0 auto', padding: '20px' }}>
       <Carousel data-bs-theme="dark">
-        <Carousel.Item>
-          <img className="d-block w-100" src={portada1} alt="..." />
-        </Carousel.Item>
+      
         <Carousel.Item>
           <img className="d-block w-100" src={portada2} alt="..." />
         </Carousel.Item>
@@ -50,9 +49,7 @@ const Home = () => {
         <Carousel.Item>
           <img className="d-block w-100" src={portadafemenino} alt="..." />
         </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={asadores1} alt="..." />
-        </Carousel.Item>
+  
       </Carousel>
       <section class="tarjetas">
         <div class="container py-5">

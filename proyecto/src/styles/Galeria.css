@@ -1,0 +1,27 @@
+.carousel-container {
+    max-width: 1000px;
+    margin: auto; /* Ajusta este valor según el tamaño deseado */
+    margin-top: 20px; /* Centrar el carrusel horizontalmente */
+  }
+  
+  .carousel-container {
+    width: 100%;
+    margin: auto;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para tarjetas en dispositivos móviles */
+  @media (max-width: 768px) {
+    .custom-card {
+      margin-bottom: 1rem;
+    }
+  
+    .carousel-caption {
+      font-size: 1rem;
+    }
+  }
+  

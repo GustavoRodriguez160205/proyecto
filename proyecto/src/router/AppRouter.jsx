@@ -10,6 +10,9 @@ import Error404 from "../pages/Error404";
 import Productos from "../pages/Productos";
 import Carrito from "../pages/Carrito";
 import Camiseta from "../pages/Camiseta";
+import Contacto from "../pages/Contacto";
+import Galeria from "../pages/Galeria";
+
 import Administrador from "../pages/Administrador";
 
 export const AppRouter = () => {
@@ -20,12 +23,13 @@ export const AppRouter = () => {
         <Route path="/administrador" element={<Administrador />} />
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Productos />} />
-        <Route path="/carrito" element={<Carrito />} />
         <Route path="/camiseta" element={<Camiseta />} />
-        {/* <Route path="/error" element={<Error404 />} />
-        <Route path="/error1" element={<Error404 />} />
-        <Route path="/error2" element={<Error404 />} />
-        <Route path="/error3" element={<Error404 />} /> */}
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/error404" element={<Error />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/galeria" element={<Galeria />} />
+        
+        
       </Routes>
       <Footer />
     </BrowserRouter>

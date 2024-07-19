@@ -1,9 +1,10 @@
 import React from "react";
 
+
 const Error404 = () => {
   return (
     <div>
-      <p>estamos trabajando</p>
+      <h1>Estamos trabajando para solucionarlo</h1>
     </div>
   );
 };

@@ -13,13 +13,14 @@ import Camiseta from "../pages/Camiseta";
 import Contacto from "../pages/Contacto";
 import Galeria from "../pages/Galeria";
 
+import Administrador from "../pages/Administrador";
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <NavbarMenu />
-
       <Routes>
+        <Route path="/administrador" element={<Administrador />} />
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/camiseta" element={<Camiseta />} />

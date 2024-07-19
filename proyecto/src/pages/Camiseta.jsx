@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -8,27 +8,36 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AfaImage from "../image/afa1.JPG";
+
 
 function Camiseta() {
-  const [talle, setTalle] = useState(''); // Estado para almacenar el talle seleccionado
-  const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const [talle, setTalle] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleTalleChange = (event) => {
-    setTalle(event.target.value); // Actualizar el estado del talle seleccionado
+    setTalle(event.target.value);
   };
 
-  // Función para manejar la acción de compra
   const handleCompraClick = () => {
     if (talle) {
-      // Redirige a la página del carrito
+      const producto = {
+        id: new Date().getTime(),
+        nombre: 'Camiseta AFA titular 2024',
+        imagen: AfaImage,
+        precio: 120650,
+        talle: talle,
+      };
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.push(producto);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
       navigate('/Carrito');
     } else {
-      setShowModal(true); // Mostrar el modal si no se seleccionó un talle
+      setShowModal(true);
     }
   };
 
-  // Función para cerrar el modal
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -39,7 +48,7 @@ function Camiseta() {
         <Row className="justify-content-center">
           <Col xs={12} md={6} lg={4} className="d-flex justify-content-center mb-4">
             <Card className="product-card" style={{ width: '100%', marginTop: '2rem' }}>
-              <Card.Img variant="top" src="src/image/afa1.JPG" />
+              <Card.Img variant="top" src={AfaImage} />
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4} className="d-flex justify-content-center mb-4">
@@ -181,7 +190,6 @@ function Camiseta() {
         </Row>
       </Container>
 
-      {/* Modal para seleccionar talle */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>¡Atención!</Modal.Title>

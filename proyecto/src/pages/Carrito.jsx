@@ -1,34 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import '../styles/Carrito.css' 
+import '../styles/Carrito.css';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-
-
-
-
 function Carrito() {
-  // Definir el estado para los productos del carrito
-  const [productos, setProductos] = useState([
-    { id: 1, nombre: 'Camiseta Titular AFA 2024', imagen: 'src/image/afa1.JPG', precio: 120650 },
-    { id: 2, nombre: 'Remera woman', imagen: 'src/image/remera3.JPG', precio: 29600 },
-    { id: 3, nombre: 'Pelota Puma', imagen: 'src/image/pelota2.JPG', precio: 67600 }
-  ]);
+  const [productos, setProductos] = useState([]);
+
+  // Cargar los productos desde el Local Storage cuando el componente se monta
+  useEffect(() => {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    setProductos(carrito);
+  }, []);
 
   // Función para eliminar un producto del carrito
   const eliminarProducto = (id) => {
     const nuevosProductos = productos.filter(producto => producto.id !== id);
     setProductos(nuevosProductos);
+    localStorage.setItem('carrito', JSON.stringify(nuevosProductos));
   };
 
   return (
     <div>
       <Container>
-        <Card style={{ marginTop: "2rem", marginBottom: "2rem", marginLeft: '5%'}}>
+        <Card style={{ marginTop: "2rem", marginBottom: "2rem", marginLeft: '5%' }}>
           <Card.Img variant="top" src="src/image/carrito.png" fluid />
         </Card>
       </Container>
@@ -61,10 +59,12 @@ function Carrito() {
       </Table>
 
       <div className="button-container">
-      <Link to="DEBES LOGUEARTE">
-        <Button variant="success" className="button-margin">Finalizar Compra</Button></Link>
+        <Link to="DEBES LOGUEARTE">
+          <Button variant="success" className="button-margin">Finalizar Compra</Button>
+        </Link>
         <Link to="/productos">
-        <Button variant="outline-info" className="button-margin">Seguir comprando</Button></Link>
+          <Button variant="outline-info" className="button-margin">Seguir comprando</Button>
+        </Link>
       </div>
     </div>
   );

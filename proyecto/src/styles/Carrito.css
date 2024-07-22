@@ -18,3 +18,15 @@
   margin-left: auto;
   margin-right: 0;
   }
+
+  @font-face {
+    font-family: 'Gotham';
+    src: url('/path/to/fonts/Gotham.woff2') format('woff2'),
+         url('/path/to/fonts/Gotham.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Gotham', sans-serif;
+}

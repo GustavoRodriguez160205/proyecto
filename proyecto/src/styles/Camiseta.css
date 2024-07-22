@@ -34,3 +34,15 @@
   .body {
     background-color: #f0f0f0; /* Color de fondo deseado */
   }
+  
+  @font-face {
+    font-family: 'Gotham';
+    src: url('/path/to/fonts/Gotham.woff2') format('woff2'),
+         url('/path/to/fonts/Gotham.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Gotham', sans-serif;
+}

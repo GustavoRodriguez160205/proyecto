@@ -26,6 +26,7 @@ import portadafemenino from "../image/portadafemenino.jpg";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
+
 const Home = () => {
   return (
     <div className="carousel-container" style={{ margin: '0 auto', padding: '20px' }}>
@@ -33,18 +34,31 @@ const Home = () => {
       
         <Carousel.Item>
           <img className="d-block w-100" src={portada2} alt="..." />
+          <Carousel.Caption>
+          <h3>DESCUBRÍ LAS MEJORES CANCHAS DE ARGENTINA</h3>
+          <p>Fútbol 5, 7 y 11.</p>
+        </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portada3} alt="..." />
+          <Carousel.Caption>
+          <h3>SEGURIDAD Y ESTACIONAMIENTO PRIVADO</h3>
+          <p>24hs</p>
+        </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portada4} alt="..." />
+          <Carousel.Caption>
+          <h3>VENÍ A ENTRENAR CON TU EQUIPO</h3>
+          <p>Fútbol 5, 7 y 11.</p>
+        </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={portada5} alt="..." />
-        </Carousel.Item>
-        <Carousel.Item>
+               <Carousel.Item>
           <img className="d-block w-100" src={imagen7} alt="..." />
+          <Carousel.Caption>
+          <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
+          <p>Fútbol 5, 7 y 11.</p>
+        </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portadafemenino} alt="..." />

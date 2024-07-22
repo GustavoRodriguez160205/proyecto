@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AfaImage from "../image/afa1.JPG";
-
+import '../styles/Camiseta.css';
 
 function Camiseta() {
   const [talle, setTalle] = useState('');
@@ -47,8 +47,8 @@ function Camiseta() {
       <Container className="justify-content-center">
         <Row className="justify-content-center">
           <Col xs={12} md={6} lg={4} className="d-flex justify-content-center mb-4">
-            <Card className="product-card" style={{ width: '100%', marginTop: '2rem' }}>
-              <Card.Img variant="top" src={AfaImage} />
+            <Card className="product-card text-center" style={{ width: '100%', marginTop: '2rem' }}>
+              <Card.Img variant="top" src={AfaImage} className="centered-image" />
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4} className="d-flex justify-content-center mb-4">
@@ -57,50 +57,21 @@ function Camiseta() {
                 <Card.Title>Camiseta AFA titular 2024</Card.Title>
                 <Card.Text>
                   La piel celeste y blanca de los campeones del mundo Qatar 2024. Estampada con el dorsal de Lionel Andrés Messi (10).
-                  <div style={{ textAlign: 'center' }}>
-                    <p style={{ fontSize: '30px', marginTop: '2rem' }}>
+                  <div className="text-center">
+                    <p className="price-text">
                       <strong>$120.650</strong>
                     </p>
-                    
                     <Button onClick={handleCompraClick} className="btn btn-primary">
                       COMPRAR
                     </Button>
                   </div>
                   <br />
-                  <p style={{ marginTop: '25px', marginBottom: '25px' }}>¡Medios de Pago disponibles!</p>
-                  <div className="ui-pdp-payment-icon d-flex justify-content-center">
-                    <div className="ui-pdp-payment-icon__container" style={{ margin: '10px' }}>
-                      <img
-                        decoding="async"
-                        src="https://http2.mlstatic.com/storage/logos-api-admin/a5f047d0-9be0-11ec-aad4-c3381f368aaf-m.svg"
-                        className="ui-pdp-image ui-pdp-payment-icon"
-                        alt="Visa"
-                      />
-                    </div>
-                    <div className="ui-pdp-payment-icon__container" style={{ margin: '10px' }}>
-                      <img
-                        decoding="async"
-                        src="https://http2.mlstatic.com/storage/logos-api-admin/fbf867c0-9108-11ed-87b1-fd4dd99fac51-m.svg"
-                        className="ui-pdp-image ui-pdp-payment-icon"
-                        alt="American Express"
-                      />
-                    </div>
-                    <div className="ui-pdp-payment-icon__container" style={{ margin: '10px' }}>
-                      <img
-                        decoding="async"
-                        src="https://http2.mlstatic.com/storage/logos-api-admin/992bc350-f3be-11eb-826e-6db365b9e0dd-m.svg"
-                        className="ui-pdp-image ui-pdp-payment-icon"
-                        alt="Naranja"
-                      />
-                    </div>
-                    <div className="ui-pdp-payment-icon__container" style={{ margin: '10px' }}>
-                      <img
-                        decoding="async"
-                        src="https://http2.mlstatic.com/storage/logos-api-admin/aa2b8f70-5c85-11ec-ae75-df2bef173be2-m.svg"
-                        className="ui-pdp-image ui-pdp-payment-icon"
-                        alt="Mastercard"
-                      />
-                    </div>
+                  <p className="payment-methods">¡Medios de Pago disponibles!</p>
+                  <div className="payment-icons d-flex justify-content-center">
+                    <img src="https://http2.mlstatic.com/storage/logos-api-admin/a5f047d0-9be0-11ec-aad4-c3381f368aaf-m.svg" alt="Visa" />
+                    <img src="https://http2.mlstatic.com/storage/logos-api-admin/fbf867c0-9108-11ed-87b1-fd4dd99fac51-m.svg" alt="American Express" />
+                    <img src="https://http2.mlstatic.com/storage/logos-api-admin/992bc350-f3be-11eb-826e-6db365b9e0dd-m.svg" alt="Naranja" />
+                    <img src="https://http2.mlstatic.com/storage/logos-api-admin/aa2b8f70-5c85-11ec-ae75-df2bef173be2-m.svg" alt="Mastercard" />
                   </div>
                   <br />
                   <p>Talles</p>
@@ -119,74 +90,73 @@ function Camiseta() {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="image-gallery">
         <Row className="justify-content-center">
           <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
             <Card className="custom-card h-100">
               <Card.Img variant="top" src="src/image/atras.JPG" />
-              <Card.Body className="text-center"></Card.Body>
             </Card>
           </Col>
-
           <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
             <Card className="custom-card h-100">
               <Card.Img variant="top" src="src/image/zoom.JPG" />
-              <Card.Body className="text-center"></Card.Body>
             </Card>
           </Col>
-
           <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
             <Card className="custom-card h-100">
               <Card.Img variant="top" src="src/image/messi1.png" />
-              <Card.Body className="text-center"></Card.Body>
             </Card>
           </Col>
         </Row>
       </Container>
 
-      <Container className="justify-content-center">
+      <Container className="recommendations">
         <Row className="justify-content-center">
-          <p style={{ width: '75%', marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          <p className="recommendations-title">
             <strong>¡RECOMENDACIONES!</strong>
           </p>
 
-          <Card.Body className="text-center">
-            <Card
-              style={{
-                width: '75%',
-                marginBottom: '2rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              <Card.Text>
-                @pedrolopez: "Buena relación precio calidad. Siempre Adidas es garantía de primera línea".
-              </Card.Text>
-            </Card>
-          </Card.Body>
+          <Card className="recommendation-card">
+  <Card.Body>
+    <div className="d-flex align-items-center">
+      <img src="src/image/comentario1.jpg" alt="Avatar" className="recommendation-avatar" />
+      <div>
+        <Card.Text>
+          @pedrolopez: "Buena relación precio calidad. Siempre Adidas es garantía de primera línea".
+        </Card.Text>
+         </div>
+    </div>
+  </Card.Body>
+</Card>
 
-          <Card.Body className="text-center">
-            <Card
-              style={{
-                width: '75%',
-                marginBottom: '2rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              <Card.Text>
-                @juansalazar: "Lo mejor de este producto es su tela para hacer deportes justamente. Lo peor es que se ensucia muy fácil".
-              </Card.Text>
-            </Card>
-          </Card.Body>
 
-          <Card.Body className="text-center">
-            <Card style={{ width: '75%', marginLeft: 'auto', marginRight: 'auto' }}>
-              <Card.Text>
-                @lujanvillafañe: "Amo como evolucionan la tecnología de las camisetas pensando en las jugadoras y jugadores ¡Ready para jugar!".
-              </Card.Text>
-            </Card>
-          </Card.Body>
+<Card className="recommendation-card">
+  <Card.Body>
+    <div className="d-flex align-items-center">
+      <img src="src/image/comentario2.jpg" alt="Avatar" className="recommendation-avatar" />
+      <div>
+        <Card.Text>
+        @juansalazar: "Lo mejor de este producto es su tela para hacer deportes justamente. Lo peor es que se ensucia muy fácil".
+        </Card.Text>
+         </div>
+    </div>
+  </Card.Body>
+</Card>
+               
+<Card className="recommendation-card">
+  <Card.Body>
+    <div className="d-flex align-items-center">
+      <img src="src/image/comentario3.jpg" alt="Avatar" className="recommendation-avatar" />
+      <div>
+        <Card.Text>
+        @lujanvillafañe: "Amo como evolucionan la tecnología de las camisetas pensando en las jugadoras y jugadores ¡Ready para jugar!".
+        </Card.Text>
+         </div>
+    </div>
+  </Card.Body>
+</Card>
+          
+
         </Row>
       </Container>
 

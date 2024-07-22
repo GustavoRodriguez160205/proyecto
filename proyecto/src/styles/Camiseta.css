@@ -1,39 +1,46 @@
-.afa-card {
-    width: 12rem;
-  }
+.product-card .centered-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto; /* Mantener la proporción de la imagen */
+}
 
-  .producto-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
-  
-  .talle-selector {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .talle-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-  
-  .talle-button.active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-  }
-  
+.price-text {
+  font-size: 30px;
+  margin-top: 2rem;
+}
 
-  .body {
-    background-color: #f0f0f0; /* Color de fondo deseado */
-  }
+.payment-icons img {
+  margin: 10px;
+}
+
+.payment-methods {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.image-gallery {
+  margin-top: 2rem;
+}
+
+.recommendations {
+  margin-top: 2rem;
+}
+
+.recommendations-title {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recommendation-card {
+  width: 75%;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
   
   @font-face {
     font-family: 'Gotham';
@@ -45,4 +52,30 @@
 
 body {
     font-family: 'Gotham', sans-serif;
+}
+
+.recommendation-card {
+  width: 85%;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border: 1px solid #ddd; /* Borde ligero */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: #f9f9f9; /* Fondo ligero */
+}
+
+.recommendation-card img {
+  border-radius: 50%; /* Redondear la imagen */
+  width: 50px; /* Tamaño de la imagen */
+  height: 50px; /* Tamaño de la imagen */
+  margin-right: 10px; /* Espacio entre imagen y texto */
+}
+
+.recommendation-card {
+  background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

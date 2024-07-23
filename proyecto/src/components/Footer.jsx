@@ -19,7 +19,7 @@ const Footer = () => {
                 <img src={logosinfondo} className="mx-2" height="110" />
               </Link>
               <h3>
-                <span>El Club FC</span>-Somos Futboleros
+                <f3>El Club FC</f3>
               </h3>
               <h6>CANCHAS 5,7,11 - CAMPEONATOS - VESTUARIOS </h6>
 
@@ -94,7 +94,7 @@ const Footer = () => {
         <p>
           {" "}
           <p>
-            &copy; 2024 El CLUB FC Somos futboleros. Todos los derechos
+            &copy; 2024 El CLUB FC. Todos los derechos
             reservados.
           </p>
         </p>

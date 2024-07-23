@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('/path/to/fonts/Gotham.woff2') format('woff2'),
+         url('/path/to/fonts/Gotham.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Gotham', sans-serif;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+.card-img-custom {
+    width: 100%;
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    object-fit: cover; /* Esto asegura que la imagen mantenga su proporción mientras llena el contenedor */
+  }
+  
+
+  .card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+
+  

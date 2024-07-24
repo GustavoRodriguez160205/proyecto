@@ -14,6 +14,8 @@ import Contacto from "../pages/Contacto";
 import Galeria from "../pages/Galeria";
 
 import Administrador from "../pages/Administrador";
+import RegistrationModal from "../components/RegistrationModal";
+import LoginModal from "../components/LoginModal";
 
 export const AppRouter = () => {
   return (
@@ -22,14 +24,14 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/administrador" element={<Administrador />} />
         <Route path="/" element={<Home />} />
+        <Route path="/registro" element={<RegistrationModal />} />
+        <Route path="/login" element={<LoginModal />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/camiseta" element={<Camiseta />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/error404" element={<Error />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/galeria" element={<Galeria />} />
-        
-        
       </Routes>
       <Footer />
     </BrowserRouter>

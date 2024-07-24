@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Navbar, Tab, Tabs } from "react-bootstrap";
-import UsersTable from "../components/UsersTable";
-import ProductsTable from "../components/ProductsTable";
-import FieldsTable from "../components/FieldsTable";
-import ReservationsTable from "../components/ReservationsTable";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { TablaUsuarios } from "../components/TablaUsuarios";
+import { TablaProductos } from "../components/TablaProductos";
+import { TablaCanchas } from "../components/TablaCanchas";
+import { TablaReservas } from "../components/TablaReservas";
 
 function Administrador() {
   return (
@@ -15,16 +15,16 @@ function Administrador() {
       </Navbar>
       <Tabs defaultActiveKey="users" id="uncontrolled-tab-example">
         <Tab eventKey="users" title="Usuarios">
-          <UsersTable />
+          <TablaUsuarios />
         </Tab>
         <Tab eventKey="products" title="Productos">
-          <ProductsTable />
+          <TablaProductos />
         </Tab>
         <Tab eventKey="fields" title="Canchas">
-          <FieldsTable />
+          <TablaCanchas />
         </Tab>
         <Tab eventKey="reservations" title="Reservas">
-          <ReservationsTable />
+          <TablaReservas />
         </Tab>
       </Tabs>
     </Container>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -6,11 +6,22 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import logosinfondo from "../image/logosinfondo.png";
 import carrito from "../image/carrito.png";
+import RegistrationModal from "./RegistrationModal";
+import LoginModal from "./LoginModal";
+
 const NavbarMenu = () => {
   let activeStyle = {
     textDecoration: "underline",
     fontWeight: "bold",
   };
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleLoginShow = () => setShowLoginModal(true);
+  const handleLoginClose = () => setShowLoginModal(false);
 
   return (
     <div>
@@ -25,7 +36,6 @@ const NavbarMenu = () => {
               alt="React Bootstrap logo"
             />
             {""}
-          
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -74,7 +84,7 @@ const NavbarMenu = () => {
                 ADMINISTRADOR
               </NavLink>
             </Nav>
-            <Button style={{ background: " #72A1E5" }} variant="light me-4">
+            {/* <Button style={{ background: " #72A1E5" }} variant="light me-4">
               <NavLink
                 className="nav-link "
                 to="/registro"
@@ -82,8 +92,11 @@ const NavbarMenu = () => {
               >
                 Registrarse
               </NavLink>
+            </Button> */}
+            <Button variant="primary me-2" onClick={handleShow}>
+              Registrarse
             </Button>
-            <Button style={{ background: " #72A1E5" }} variant="light me-4">
+            {/* <Button style={{ background: " #72A1E5" }} variant="light me-4">
               <NavLink
                 className="nav-link "
                 to="/login"
@@ -91,11 +104,16 @@ const NavbarMenu = () => {
               >
                 Loguearse
               </NavLink>
+            </Button> */}
+            <Button variant="primary" onClick={handleLoginShow}>
+              Logearse
             </Button>
-           
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <RegistrationModal show={showModal} handleClose={handleClose} />
+
+      <LoginModal show={showLoginModal} handleClose={handleLoginClose} />
     </div>
   );
 };

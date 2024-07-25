@@ -1,58 +1,84 @@
-import React, { useState, useEffect } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
+import axios from "axios";
+import testApi from "../api/testApi";
 
-function AddEditUserModal({ show, onHide, user, onSave }) {
+const RegistrationModal = ({ show, handleClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     edad: "",
     email: "",
     password: "",
-    rol: "usuario",
+    rol: "Usuario",
     estado: "activo",
   });
 
-  useEffect(() => {
-    if (user) {
-      setFormData(user);
-    } else {
-      setFormData({
-        name: "",
-        edad: "",
-        email: "",
-        password: "",
-        rol: "usuario",
-        estado: "activo",
-      });
-    }
-  }, [user]);
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.password) {
-      onSave({
-        ...formData,
-        _id: user ? user._id : new Date().getTime().toString(),
-      });
-      Swal.fire("Exito", "Usuario guardado con éxito", "success");
-    } else {
-      Swal.fire("Error", "Por favor completa todos los campos", "error");
+
+    const { name, edad, email, password, rol, estado } = formData;
+
+    if (!name || !edad || !email || !password || !rol || !estado) {
+      Swal.fire("Error", "Todos los campos son obligatorios", "error");
+      return;
     }
+
+    if (parseInt(edad, 10) < 18) {
+      Swal.fire("Error", "La edad debe ser mayor a 18 años", "error");
+      return;
+    }
+
+    try {
+      const response = await testApi.post("/auth/registro", formData);
+
+      if (response.data.success) {
+        Swal.fire("Éxito", "Usuario registrado con éxito", "success");
+        setFormData({
+          name: "",
+          edad: "",
+          email: "",
+          password: "",
+          rol: "Usuario",
+          estado: "activo",
+        });
+
+        handleClose();
+      } else {
+        Swal.fire("Error", response.data.message, "error");
+      }
+    } catch (error) {
+      Swal.fire("Error", "No se pudo registrar el usuario", "error");
+    }
+  };
+
+  const handleModalClose = () => {
+    setFormData({
+      name: "",
+      edad: "",
+      email: "",
+      password: "",
+      rol: "Usuario",
+      estado: "activo",
+    });
+    handleClose();
   };
 
   return (
-    <Modal show={show} onHide={onHide}>
+    <Modal show={show} onHide={handleModalClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{user ? "Editar Usuario" : "Agregar Usuario"}</Modal.Title>
+        <Modal.Title>Registro de Usuario</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName">
+          <Form.Group controlId="name">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
@@ -62,7 +88,7 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formEdad">
+          <Form.Group controlId="edad">
             <Form.Label>Edad</Form.Label>
             <Form.Control
               type="number"
@@ -72,7 +98,7 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formEmail">
+          <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
@@ -82,8 +108,8 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group controlId="password">
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               name="password"
@@ -92,7 +118,7 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formRol">
+          <Form.Group controlId="rol">
             <Form.Label>Rol</Form.Label>
             <Form.Control
               as="select"
@@ -101,11 +127,11 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
               onChange={handleChange}
               required
             >
-              <option value="usuario">Usuario</option>
-              <option value="administrador">Administrador</option>
+              <option value="Usuario">Usuario</option>
+              <option value="Admin">Admin</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="formEstado">
+          <Form.Group controlId="estado">
             <Form.Label>Estado</Form.Label>
             <Form.Control
               as="select"
@@ -119,12 +145,12 @@ function AddEditUserModal({ show, onHide, user, onSave }) {
             </Form.Control>
           </Form.Group>
           <Button variant="primary" type="submit">
-            Guardar
+            Registrar
           </Button>
         </Form>
       </Modal.Body>
     </Modal>
   );
-}
+};
 
-export default AddEditUserModal;
+export default RegistrationModal;

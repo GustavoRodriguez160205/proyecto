@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const LoginModal = ({ show, handleClose }) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -27,13 +23,13 @@ const LoginModal = ({ show, handleClose }) => {
     }
 
     try {
-      const response = await testApi.post("/auth/login", formData);
+      const response = await axios.post("/auth/login", formData);
 
       if (response.data.success) {
         Swal.fire("Éxito", "Inicio de sesión exitoso", "success");
-        setFormData({ email: "", password: "" });
-        localStorage.setItem(token, response.data.token);
+        login(response.data.user);
         handleClose();
+        window.location.href = "/ administrador"; // Redirigir al home
       } else {
         Swal.fire("Error", response.data.message, "error");
       }
@@ -42,17 +38,12 @@ const LoginModal = ({ show, handleClose }) => {
     }
   };
 
-  const handleModalClose = () => {
-    setFormData({ email: "", password: "" });
-    handleClose();
-  };
-
   return (
-    <Modal show={show} onHide={handleModalClose}>
+    <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Iniciar Sesión</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ background: "#f5f3f3" }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
@@ -74,7 +65,11 @@ const LoginModal = ({ show, handleClose }) => {
               required
             />
           </Form.Group>
-          <Button variant="primary mt-2 mb-2" type="submit">
+          <Button
+            style={{ background: " #72A1E5" }}
+            variant=" mt-2 mb-2"
+            type="submit"
+          >
             Iniciar Sesión
           </Button>
         </Form>

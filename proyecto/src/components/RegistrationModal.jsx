@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
-import testApi from "../api/testApi";
+import { AuthContext } from "../context/AuthContext";
 
 const RegistrationModal = ({ show, handleClose }) => {
   const [formData, setFormData] = useState({
@@ -13,12 +13,10 @@ const RegistrationModal = ({ show, handleClose }) => {
     rol: "Usuario",
     estado: "activo",
   });
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -37,20 +35,13 @@ const RegistrationModal = ({ show, handleClose }) => {
     }
 
     try {
-      const response = await testApi.post("/auth/registro", formData);
+      const response = await axios.post("/auth/registro", formData);
 
       if (response.data.success) {
         Swal.fire("Éxito", "Usuario registrado con éxito", "success");
-        setFormData({
-          name: "",
-          edad: "",
-          email: "",
-          password: "",
-          rol: "Usuario",
-          estado: "activo",
-        });
-
+        login(response.data.user);
         handleClose();
+        window.location.href = "/"; // Redirigir al home
       } else {
         Swal.fire("Error", response.data.message, "error");
       }
@@ -59,24 +50,12 @@ const RegistrationModal = ({ show, handleClose }) => {
     }
   };
 
-  const handleModalClose = () => {
-    setFormData({
-      name: "",
-      edad: "",
-      email: "",
-      password: "",
-      rol: "Usuario",
-      estado: "activo",
-    });
-    handleClose();
-  };
-
   return (
-    <Modal show={show} onHide={handleModalClose}>
+    <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Registro de Usuario</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ background: "#f5f3f3" }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="name">
             <Form.Label>Nombre</Form.Label>
@@ -144,7 +123,11 @@ const RegistrationModal = ({ show, handleClose }) => {
               <option value="inactivo">Inactivo</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button
+            style={{ background: " #72A1E5" }}
+            variant=" mt-2 mb-2"
+            type="submit"
+          >
             Registrar
           </Button>
         </Form>

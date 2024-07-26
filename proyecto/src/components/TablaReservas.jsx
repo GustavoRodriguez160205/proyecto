@@ -42,9 +42,7 @@ export const TablaReservas = () => {
                 <td>{reserva.horaInicio}</td>
                 <td>{reserva.horaFin}</td>
                 <td>
-                  <Button variant="primary" type="submit">
-                    Suspender
-                  </Button>
+                  <Button type="submit">Suspender</Button>
                   {/* <button>suspender</button> */}
                 </td>
               </tr>

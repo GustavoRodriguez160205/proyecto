@@ -8,7 +8,7 @@ export const TablaProductos = () => {
   const [name, setName] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [showEditar, setShowEditar] = useState("false");
+  const [showEditar, setShowEditar] = useState("");
   const [productoEditar, setProductoEditar] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -56,7 +56,7 @@ export const TablaProductos = () => {
   };
 
   const editarProducto = (producto) => {
-    setShowEditar(true);
+    setShowEditar(false);
     setProductoEditar(producto);
   };
 
@@ -88,7 +88,11 @@ export const TablaProductos = () => {
 
   return (
     <div>
-      <Button variant="primary mt-2 mb-2" onClick={handleShow}>
+      <Button
+        style={{ background: " #72A1E5" }}
+        variant=" mt-2 mb-2"
+        onClick={handleShow}
+      >
         + Agregar Producto
       </Button>
 
@@ -96,7 +100,7 @@ export const TablaProductos = () => {
         <Modal.Header closeButton>
           <Modal.Title>Crear Producto</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ background: "#f5f3f3" }}>
           <Form onSubmit={handelCrearProducto}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Nombre</Form.Label>
@@ -128,7 +132,13 @@ export const TablaProductos = () => {
             <Button variant="secondary" onClick={handleClose}>
               Cancelar
             </Button>
-            <Button type="submit" className="ms-2" onClick={handleClose}>
+            <Button
+              style={{ background: " #72A1E5" }}
+              variant=" mt-2 mb-2"
+              type="submit"
+              className="ms-2"
+              onClick={handleClose}
+            >
               Guardar Producto
             </Button>
           </Form>
@@ -214,7 +224,11 @@ export const TablaProductos = () => {
             <Button variant="secondary" onClick={() => setShowEditar(false)}>
               Cerrar
             </Button>
-            <Button type="submit" variant="primary">
+            <Button
+              style={{ background: " #72A1E5" }}
+              variant=" mt-2 mb-2"
+              type="submit"
+            >
               Guardar cambios
             </Button>
           </Modal.Footer>

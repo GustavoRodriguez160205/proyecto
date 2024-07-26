@@ -8,7 +8,7 @@ export const TablaCanchas = () => {
   const [name, setName] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [estado, setEstado] = useState("");
-  const [showEditar, setShowEditar] = useState("false");
+  const [showEditar, setShowEditar] = useState("");
   const [canchaEditar, setCanchaEditar] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -84,11 +84,14 @@ export const TablaCanchas = () => {
     e.preventDefault();
   };
   editarCanchaBackend(canchaEditar);
-  // crearProductoBackend(name, precio, descripcion);
 
   return (
     <div>
-      <Button variant="primary mt-2 mb-2" onClick={handleShow}>
+      <Button
+        style={{ background: " #72A1E5" }}
+        variant=" mt-2 mb-2"
+        onClick={handleShow}
+      >
         + Agregar Cancha
       </Button>
 
@@ -96,7 +99,7 @@ export const TablaCanchas = () => {
         <Modal.Header closeButton>
           <Modal.Title>Crear Cancha</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ background: "#f5f3f3" }}>
           <Form onSubmit={handelCrearCancha}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Nombre</Form.Label>
@@ -128,7 +131,13 @@ export const TablaCanchas = () => {
             <Button variant="secondary" onClick={handleClose}>
               Cancelar
             </Button>
-            <Button type="submit" className="ms-2" onClick={handleClose}>
+            <Button
+              style={{ background: " #72A1E5" }}
+              variant=" mt-2 mb-2"
+              type="submit"
+              className="ms-2"
+              onClick={handleClose}
+            >
               Guardar Cancha
             </Button>
           </Form>
@@ -214,7 +223,11 @@ export const TablaCanchas = () => {
             <Button variant="secondary" onClick={() => setShowEditar(false)}>
               Cerrar
             </Button>
-            <Button type="submit" variant="primary">
+            <Button
+              style={{ background: " #72A1E5" }}
+              variant=" mt-2 mb-2"
+              type="submit"
+            >
               Guardar Cambios
             </Button>
           </Modal.Footer>

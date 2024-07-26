@@ -6,13 +6,18 @@ import { TablaUsuarios } from "../components/TablaUsuarios";
 import { TablaProductos } from "../components/TablaProductos";
 import { TablaCanchas } from "../components/TablaCanchas";
 import { TablaReservas } from "../components/TablaReservas";
+import "../styles/administrador.css";
 
 function Administrador() {
   return (
-    <Container>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">ADMINISTRACION</Navbar.Brand>
+    <Container className="admin">
+      <hr />
+      <Navbar>
+        <Navbar.Brand href="#home">
+          <h1>ADMINISTRACION</h1>
+        </Navbar.Brand>
       </Navbar>
+      <hr />
       <Tabs defaultActiveKey="users" id="uncontrolled-tab-example">
         <Tab eventKey="users" title="Usuarios">
           <TablaUsuarios />

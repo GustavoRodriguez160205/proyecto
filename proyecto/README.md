@@ -37,7 +37,7 @@
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/tu-usuario/alangulo.git
+   git clone 
 
 
 2. **Ingresar a la Carpeta**

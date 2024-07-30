@@ -24,7 +24,7 @@
 
 ## Descripción y contexto
 ---
-AlAngulo es una plataforma en línea que facilita la reserva de canchas de fútbol para los amantes de este deporte. Esta aplicación permite a los usuarios buscar, explorar y reservar canchas de fútbol en nuestro complejo de manera conveniente y eficiente. Los usuarios pueden ver detalles sobre las instalaciones disponibles, como el tipo de cancha,  las instalaciones adicionales y los precios por hora. Además, AlAngulo ofrece a los usuarios registrados la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
+EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbol para los amantes de este deporte. Esta aplicación permite a los usuarios buscar, explorar y reservar canchas de fútbol en nuestro complejo de manera conveniente y eficiente. Los usuarios pueden ver detalles sobre las instalaciones disponibles, como el tipo de cancha,  las instalaciones adicionales y los precios por hora. Además, AlAngulo ofrece a los usuarios registrados la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
 
 ### Funcionalidades principales
 

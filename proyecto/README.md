@@ -1,7 +1,7 @@
 # 🏟️ Proyecto Canchas de Fútbol - El CLUB
 
 ## Descripción y Contexto
-**AlAngulo** es una plataforma en línea diseñada para facilitar la reserva de canchas de fútbol, dirigida a los entusiastas de este deporte. A través de esta aplicación, los usuarios pueden buscar, explorar y reservar canchas en nuestro complejo de manera conveniente y eficiente. Además, ofrece detalles sobre las instalaciones disponibles, incluyendo el tipo de cancha, las instalaciones adicionales y los precios por hora. Los usuarios registrados tienen la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
+**El CLUB** es una plataforma en línea diseñada para facilitar la reserva de canchas de fútbol, dirigida a los entusiastas de este deporte. A través de esta aplicación, los usuarios pueden buscar, explorar y reservar canchas en nuestro complejo de manera conveniente y eficiente. Además, ofrece detalles sobre las instalaciones disponibles, incluyendo el tipo de cancha, las instalaciones adicionales y los precios por hora. Los usuarios registrados tienen la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
 
 ## Funcionalidades Principales
 
@@ -45,7 +45,7 @@
 - Clonar el Repositorio en la consola de su editor de codigo usando git clone.
 - Una vez ya clonado el repositorio ingresar a la carpeta del proyecto haciendo cd backend.
 - Realizar la instalacion de las dependencias npm insall o npm i.
-- Para ejecutar el proyecto tiene que hacer npm run dev
+- Para ejecutar el proyecto tiene que hacer node index.js
 
 
 

@@ -33,22 +33,23 @@
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
 
-### Instrucciones de Instalación
+### Instrucciones de Instalación repositorio FrontEnd
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone 
+- Clonar el Repositorio en la consola de su editor de codigo usando git clone.
+- Una vez ya clonado el repositorio ingresar a la carpeta del proyecto haciendo cd proyecto.
+- Realizar la instalacion de las dependencias npm insall o npm i.
+- Para ejecutar el proyecto tiene que hacer npm run dev
+
+### Instrucciones de Instalación repositorio de backend
+
+- Clonar el Repositorio en la consola de su editor de codigo usando git clone.
+- Una vez ya clonado el repositorio ingresar a la carpeta del proyecto haciendo cd backend.
+- Realizar la instalacion de las dependencias npm insall o npm i.
+- Para ejecutar el proyecto tiene que hacer npm run dev
 
 
-2. **Ingresar a la Carpeta**
-  ```bash
-     cd Proyecto
 
 
-3. **Instalar las Dependencias del Front End**
-   ``npm install
 
-4. **Ejecutar el Proyecto**
-   ``npm Run Dev
 
 

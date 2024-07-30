@@ -99,9 +99,11 @@ Desde la consola
 
 ## Autores
 
-+ [Claudio Adrian Toledo]()
-+[Hugo Hernan Díaz](https://github.com/DiazHugoHernan23)
-  
-+ 
++ [Hugo Hernan Díaz](https://github.com/DiazHugoHernan23)
++ [Claudio Adrian Toledo](https://github.com/CLAUDIOTOLEDO252208)
++ [Nico Peñaloza]()
++ [Matias A. Dias Linares]()
+
+
 
 

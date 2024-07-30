@@ -34,7 +34,12 @@ const NavbarMenu = () => {
 
   return (
     <div>
-      <Navbar style={{ background: "#f5f3f3" }} expand="lg">
+      <Navbar
+        className="navbar-shadow"
+        // fixed="top"
+        style={{ background: "#f5f3f3" }}
+        expand="lg"
+      >
         <Container fluid>
           <Navbar.Brand href="#">
             <img

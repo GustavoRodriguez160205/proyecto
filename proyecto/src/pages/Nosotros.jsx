@@ -2,8 +2,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../styles/nosotros.css";
-import avatar from "../image/avatar.png";
+
 import claudiotoledo from "../image/claudiotoledo.jpeg";
+import nico from "../image/nico.jpeg";
+import hernan23 from "../image/hernan23.png";
+import matias from "../image/matias.jpeg";
+import gustavo from "../image/gustavo.jpeg";
 const Nosotros = () => {
   return (
     <>
@@ -19,7 +23,7 @@ const Nosotros = () => {
             <div className="card carta">
               <img
                 className="card-image"
-                src={avatar}
+                src={hernan23}
                 alt="profile picture"
               ></img>
               <h2 className="card-title">Hernan Diaz</h2>
@@ -41,7 +45,7 @@ const Nosotros = () => {
             <div className="card carta">
               <img
                 className="card-image"
-                src={avatar}
+                src={nico}
                 alt="profile picture"
               ></img>
               <h2 className="card-title">Nicolas Peñaloza</h2>
@@ -70,7 +74,7 @@ const Nosotros = () => {
             <div className="card carta">
               <img
                 className="card-image"
-                src={avatar}
+                src={matias}
                 alt="profile picture"
               ></img>
               <h2 className="card-title">Matias Diaz Linares</h2>
@@ -124,7 +128,7 @@ const Nosotros = () => {
             <div className="card carta">
               <img
                 className="card-image"
-                src={avatar}
+                src={gustavo}
                 alt="profile picture"
               ></img>
               <h2 className="card-title">Gustavo Rodriguez</h2>

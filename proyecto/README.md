@@ -101,7 +101,7 @@ Desde la consola
 
 + [Hugo Hernan Díaz](https://github.com/DiazHugoHernan23)
 + [Claudio Adrian Toledo](https://github.com/CLAUDIOTOLEDO252208)
-+ [Nico Peñaloza]()
++ [Nico Peñaloza](https://github.com/Nicogdp)
 + [Matias A. Dias Linares]()
 
 

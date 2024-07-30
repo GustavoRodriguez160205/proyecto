@@ -76,12 +76,11 @@ Desde la consola
 
 + Clona el repositorio:
 
-  git clone https://github.com/EzequielMassa/AlAnguloFrontend.git
+  git clone 
 
 + Accede al directorio del proyecto:
 
-  cd AlAnguloFrontend
-
+  cd proyecto
 + Instala las dependencias
 
   npm install
@@ -96,7 +95,7 @@ Desde la consola
 
 +Accede a la aplicación:
 
- Abre tu navegador web y visita http://localhost:5173 para ver la aplicación en funcionamiento.
+ Abre tu navegador web y para ver la aplicación en funcionamiento.
 
 ## Autores
 

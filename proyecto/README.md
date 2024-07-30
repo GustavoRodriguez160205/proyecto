@@ -24,7 +24,7 @@
 
 ## Descripción y contexto
 ---
-EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbol para los amantes de este deporte. Esta aplicación permite a los usuarios buscar, explorar y reservar canchas de fútbol en nuestro complejo de manera conveniente y eficiente. Los usuarios pueden ver detalles sobre las instalaciones disponibles, como el tipo de cancha,  las instalaciones adicionales y los precios por hora. Además, AlAngulo ofrece a los usuarios registrados la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
+EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbol para los amantes de este deporte. Esta aplicación permite a los usuarios buscar, explorar y reservar canchas de fútbol en nuestro complejo de manera conveniente y eficiente. Los usuarios pueden ver detalles sobre las instalaciones disponibles, como el tipo de cancha,  las instalaciones adicionales y los precios por hora. Además, ELCLUB ofrece a los usuarios registrados la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
 
 ### Funcionalidades principales
 
@@ -40,7 +40,7 @@ EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbo
 + **Base de datos**: Se utiliza la base de datos MONGODB para almacenar la información de los usuarios, las reservas, los productos y los detalles de las canchas.
 + **Autenticación y autorización**: Se implementa un sistema de autenticación y autorización utilizando JSON Web Tokens (JWT) para garantizar que solo los usuarios registrados puedan realizar reservas y acceder a ciertas funcionalidades de la aplicación.
 
-## Cómo utilizar AlAngulo
+## Cómo utilizar EL CLUB
 
 + **Registro**: Crea una cuenta en AlAngulo proporcionando información básica como nombre, correo electrónico y contraseña.
 + **Inicio de sesión**: Inicia sesión en tu cuenta utilizando las credenciales registradas.
@@ -95,12 +95,12 @@ Desde la consola
 
 +Accede a la aplicación:
 
- Abre tu navegador web y para ver la aplicación en funcionamiento.
+ Abre tu navegador web y coloca http://localhost:/4000 para ver la aplicación en funcionamiento.
 
 ## Autores
 
 + [Claudio Adrian Toledo]()
-+
++[Hugo Hernan Díaz](https://github.com/DiazHugoHernan23)
   
 + 
 

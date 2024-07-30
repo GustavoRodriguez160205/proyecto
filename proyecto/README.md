@@ -1,55 +1,108 @@
-# 🏟️ Proyecto Canchas de Fútbol - El CLUB
 
-## Descripción y Contexto
-**El CLUB** es una plataforma en línea diseñada para facilitar la reserva de canchas de fútbol, dirigida a los entusiastas de este deporte. A través de esta aplicación, los usuarios pueden buscar, explorar y reservar canchas en nuestro complejo de manera conveniente y eficiente. Además, ofrece detalles sobre las instalaciones disponibles, incluyendo el tipo de cancha, las instalaciones adicionales y los precios por hora. Los usuarios registrados tienen la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
+<h1 align="center"> EL CLUB</h1>
 
-## Funcionalidades Principales
+## Tabla de contenidos:
+---
 
-- 🔍 **Búsqueda de Canchas:** Los usuarios pueden buscar canchas de fútbol por ubicación, fecha y hora para encontrar la opción que mejor se adapte a sus necesidades.
-- 🗓️ **Reservas en Línea:** Los usuarios registrados pueden reservar canchas de fútbol de manera fácil y rápida a través de la plataforma.
-- ⚙️ **Gestión de Reservas:** Los usuarios pueden ver y gestionar sus reservas existentes, incluyendo la posibilidad de cancelar reservas según sea necesario.
-- 📋 **Información Detallada de la Cancha:** Los usuarios pueden acceder a información detallada sobre cada cancha, incluidas las instalaciones, los horarios de disponibilidad y los precios.
-
-
-## Tecnologías Utilizadas
-
-### Frontend
-- ⚛️ **React.js:** Para la creación de componentes interactivos y dinámicos.
-- 🧭 **React Router:** Para la navegación entre páginas.
-- 🎨 **Bootstrap:** Para un diseño responsivo y una interfaz de usuario amigable.
-
-### Backend
-- 🟢 **Node.js y Express.js:** Para desarrollar una API RESTful que gestione las solicitudes de los clientes, la autenticación de usuarios y la lógica de negocio relacionada con la gestión de reservas.
-
-### Base de Datos
-- 🍃 **MongoDB:** Para almacenar la información de los usuarios, las reservas, los productos y los detalles de las canchas.
-
-### Autenticación y Autorización
-- 🔐 **JSON Web Tokens (JWT):** Para garantizar que solo los usuarios registrados puedan realizar reservas y acceder a ciertas funcionalidades de la aplicación.
-
-## 🚀 Instalación y Ejecución
-
-### Requisitos Previos
-- [Node.js](https://nodejs.org/)
-- [MongoDB](https://www.mongodb.com/)
-
-### Instrucciones de Instalación repositorio FrontEnd
-
-- Clonar el Repositorio en la consola de su editor de codigo usando git clone.
-- Una vez ya clonado el repositorio ingresar a la carpeta del proyecto haciendo cd proyecto.
-- Realizar la instalacion de las dependencias npm insall o npm i.
-- Para ejecutar el proyecto tiene que hacer npm run dev
-
-### Instrucciones de Instalación repositorio de backend
-
-- Clonar el Repositorio en la consola de su editor de codigo usando git clone.
-- Una vez ya clonado el repositorio ingresar a la carpeta del proyecto haciendo cd backend.
-- Realizar la instalacion de las dependencias npm insall o npm i.
-- Para ejecutar el proyecto tiene que hacer node index.js
+- [Badges o escudos](#badges-o-escudos)
+- [Descripción y contexto](#descripción-y-contexto)
+- [Guía de usuario](#guía-de-usuario)
+- [Guía de instalación](#guía-de-instalación)
+- [Autores](#autores)
 
 
+## Badges o escudos
+---
+
+- ![Status](https://img.shields.io/badge/STATUS-TERMINADO-blue)
+- stable release version: ![version](https://img.shields.io/badge/version-1.2.3-blue)
+- package manager release: ![gem](https://img.shields.io/badge/gem-2.2.0-blue)
+- status of third-party dependencies: ![dependencies](https://img.shields.io/badge/dependencies-out%20of%20date-orange)
+- Chrome Web Store extension rating: ![rating](https://img.shields.io/badge/rating-★★★★☆-brightgreen)
+- [Uptime Robot](https://uptimerobot.com) percentage: ![uptime](https://img.shields.io/badge/uptime-100%25-brightgreen)
+
+
+## Descripción y contexto
+---
+AlAngulo es una plataforma en línea que facilita la reserva de canchas de fútbol para los amantes de este deporte. Esta aplicación permite a los usuarios buscar, explorar y reservar canchas de fútbol en nuestro complejo de manera conveniente y eficiente. Los usuarios pueden ver detalles sobre las instalaciones disponibles, como el tipo de cancha,  las instalaciones adicionales y los precios por hora. Además, AlAngulo ofrece a los usuarios registrados la capacidad de realizar reservas en línea, gestionar sus reservas existentes y recibir notificaciones sobre promociones y ofertas especiales.
+
+### Funcionalidades principales
+
++ **Búsqueda de canchas**: Los usuarios pueden buscar canchas de fútbol por ubicación, fecha y hora para encontrar la opción más adecuada para sus necesidades.
++ **Reservas en línea**: Los usuarios registrados pueden reservar canchas de fútbol de manera fácil y rápida a través de la plataforma.
++ **Gestión de reservas**: Los usuarios pueden ver sus reservas existentes, y tienen la posibilidad de cancelar reservas según sea necesario.
++ **Información detallada de la cancha**: Los usuarios pueden ver información detallada sobre cada cancha, incluidas las instalaciones, los horarios de disponibilidad y los precios.
+
+## Tecnologías utilizadas
+
++ **Frontend**: La interfaz de usuario de AlAngulo está construida utilizando tecnologías web modernas como React.js para la creación de componentes interactivos y dinámicos, React Router para la navegación entre páginas, y Bootstrap para el diseño responsivo y la interfaz de usuario amigable.
++ **Backend**: El backend de la aplicación está desarrollado con Node.js y Express.js para crear una API RESTful que gestiona las solicitudes de los clientes, la autenticación de usuarios y la lógica de negocio relacionada con la gestión de reservas.
++ **Base de datos**: Se utiliza la base de datos MONGODB para almacenar la información de los usuarios, las reservas, los productos y los detalles de las canchas.
++ **Autenticación y autorización**: Se implementa un sistema de autenticación y autorización utilizando JSON Web Tokens (JWT) para garantizar que solo los usuarios registrados puedan realizar reservas y acceder a ciertas funcionalidades de la aplicación.
+
+## Cómo utilizar AlAngulo
+
++ **Registro**: Crea una cuenta en AlAngulo proporcionando información básica como nombre, correo electrónico y contraseña.
++ **Inicio de sesión**: Inicia sesión en tu cuenta utilizando las credenciales registradas.
+ 
+![Iniciar_Sesion]
++ **Buscar canchas**: Explora la lista de canchas disponibles y utiliza filtros para encontrar la opción que mejor se adapte a tus necesidades.
++ **Buscar Productos**: Explora nuestros Productos Personalizados y utilizar los filtros y categorias para encontrar aquel que buscas.
+![Productos_Y_Canchas]
++ **Ver detalles**: Haz clic en una cancha para ver detalles completos como horarios de disponibilidad y precios, Productos y cantidad que desea ordenar, para luego agregar al carrito.
 
 
 
++ **Reserva**: Selecciona la fecha y hora deseadas y completa el proceso de reserva.
+
++ **Gestión de reservas y Productos**: Accede a tu Carrito para ver y administrar tus reservas activas, así como para recibir notificaciones importantes.
+
+
+
+ 	
+## Guía de instalación
+
+Para ejecutar el proyecto localmente en tu máquina, sigue estos pasos:
+
+### Prerrequisitos
+Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
+
++ Node.js (v20.x o superior)
++ npm (normalmente se instala junto con Node.js)
++ MongoDB
+
+### Pasos de Instalación
+Desde la consola 
+
++ Clona el repositorio:
+
+  git clone https://github.com/EzequielMassa/AlAnguloFrontend.git
+
++ Accede al directorio del proyecto:
+
+  cd AlAnguloFrontend
+
++ Instala las dependencias
+
+  npm install
+
++ Configura variables de entorno:
+
+  Copia el archivo .env.example y renómbralo a .env. Luego, actualiza las variables de entorno según tu configuración.
+
++ Inicia el servidor de desarrollo
+
+  npm run dev
+
++Accede a la aplicación:
+
+ Abre tu navegador web y visita http://localhost:5173 para ver la aplicación en funcionamiento.
+
+## Autores
+
++ [Claudio Adrian Toledo]()
++
+  
++ 
 
 

@@ -30,4 +30,16 @@ body {
   }
   
 
-  
+  /* .card{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   
+    }        
+    
+    .card:hover{
+      box-shadow: 0 8px 8px 0 #121212,0 8px 8px 0 #040404;
+      transform: translate(0px,5px);
+      -webkit-transform: translate(0px,5px);
+      -moz-transform:translate(0px,5px);
+      cursor: pointer; 
+    }
+    */

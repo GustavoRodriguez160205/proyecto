@@ -6,7 +6,7 @@ import RegistrationModal from "./RegistrationModal";
 import LoginModal from "./LoginModal";
 import AdminLoginModal from "./AdminLoginModal";
 import { AuthContext } from "../context/AuthContext";
-
+import "../styles/navfoothome.css";
 const NavbarMenu = () => {
   let activeStyle = {
     textDecoration: "underline",
@@ -74,7 +74,7 @@ const NavbarMenu = () => {
                     Nosotros
                   </NavLink>
                   <NavLink
-                    className="nav-link"
+                    className="nav-link me-2"
                     to="/contacto"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
@@ -93,6 +93,16 @@ const NavbarMenu = () => {
                       >
                         Productos
                       </NavLink>
+
+                      <NavLink
+                        className="nav-link"
+                        to="/canchas"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Canchas
+                      </NavLink>
                       <NavLink
                         className="nav-link"
                         to="/camiseta"
@@ -103,7 +113,7 @@ const NavbarMenu = () => {
                         Camisetas
                       </NavLink>
                       <NavLink
-                        className="nav-link"
+                        className="nav-link "
                         to="/carrito"
                         style={({ isActive }) =>
                           isActive ? activeStyle : undefined
@@ -130,20 +140,29 @@ const NavbarMenu = () => {
                 <Navbar.Text className="me-2">
                   HOLA !, ADMINISTRADOR
                 </Navbar.Text>
-                <Button variant="secondary" onClick={handleLogout}>
+                <Button
+                  className="button"
+                  variant="secondary"
+                  onClick={handleLogout}
+                >
                   Cerrar Sesión
                 </Button>
               </>
             ) : user ? (
               <>
                 <Navbar.Text className="me-2">Hola, {user.name}</Navbar.Text>
-                <Button variant="secondary" onClick={handleLogout}>
+                <Button
+                  className="button"
+                  variant="secondary"
+                  onClick={handleLogout}
+                >
                   Cerrar Sesión
                 </Button>
               </>
             ) : (
               <>
                 <Button
+                  className="button"
                   style={{ background: " #72A1E5" }}
                   variant="light me-4"
                   onClick={handleShow}
@@ -151,13 +170,18 @@ const NavbarMenu = () => {
                   Registrarse
                 </Button>
                 <Button
+                  className="button"
                   style={{ background: " #72A1E5" }}
                   variant="light me-4"
                   onClick={handleLoginShow}
                 >
                   Iniciar Sesión
                 </Button>
-                <Button variant="dark" onClick={handleAdminLoginShow}>
+                <Button
+                  className="button"
+                  variant="dark"
+                  onClick={handleAdminLoginShow}
+                >
                   Admin
                 </Button>
               </>

@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import testApi from "../api/testApi";
 
 const RegistrationModal = ({ show, handleClose }) => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const RegistrationModal = ({ show, handleClose }) => {
     }
 
     try {
-      const response = await axios.post("/auth/registro", formData);
+      const response = await testApi.post("/auth/registro", formData);
 
       if (response.data.success) {
         Swal.fire("Éxito", "Usuario registrado con éxito", "success");

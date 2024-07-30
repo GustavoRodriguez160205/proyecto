@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import testApi from "../api/testApi";
 
 const LoginModal = ({ show, handleClose }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,7 +24,7 @@ const LoginModal = ({ show, handleClose }) => {
     }
 
     try {
-      const response = await axios.post("/auth/login", formData);
+      const response = await testApi.post("/auth/login", formData);
 
       if (response.data.success) {
         Swal.fire("Éxito", "Inicio de sesión exitoso", "success");

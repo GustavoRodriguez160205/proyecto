@@ -1,0 +1,60 @@
+.carta{
+ box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+ }        
+ 
+ .carta:hover{
+   box-shadow: 0 8px 8px 0 #121212,0 8px 8px 0 #040404;
+   transform: translate(0px,5px);
+   -webkit-transform: translate(0px,5px);
+   -moz-transform:translate(0px,5px);
+   cursor: pointer; 
+ }
+
+
+.carta {
+	border: 1px solid  hsl(0, 2%, 8%);
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+	padding: 20px;
+	margin: 10px;
+	text-align: center;
+	max-width: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.carta .card-image {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+.carta .card-title {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	color: hsl(0, 0%, 20%);
+}
+.carta .card-text {
+	font-family: Arial, sans-serif;
+	color: hsl(0, 0%, 30%);
+}
+.icon {
+	width: 100px;
+	height: 30px;
+	color: black;
+}
+
+.icon{
+  transition: .5s, color .10s;
+     -webkit-transition: .5s, color .10s;
+     -moz-transition: .5s, color .10s;
+}
+.icon:hover{
+  transform: scale3d(1.5, 1.5, 0.3);
+  -webkit-transform: scale3d(1.5, 1.5, 0.3);
+  -moz-transform: scale3d(1.5, 1.5, 0.3)
+}

@@ -15,6 +15,7 @@ import Administrador from "../pages/Administrador";
 import RegistrationModal from "../components/RegistrationModal";
 import LoginModal from "../components/LoginModal";
 import { AuthContext } from "../context/AuthContext";
+import { PaginaCancha } from "../pages/PaginaCancha";
 
 export const AppRouter = () => {
   const { user, isAdminLoggedIn } = useContext(AuthContext);
@@ -46,6 +47,7 @@ export const AppRouter = () => {
           element={isAdminLoggedIn ? <Administrador /> : <Navigate to="/" />}
         />
         <Route path="*" element={<Error404 />} />
+        <Route path="/canchas" element={<PaginaCancha />} />
       </Routes>
       <Footer />
     </BrowserRouter>

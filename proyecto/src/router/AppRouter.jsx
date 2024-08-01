@@ -28,19 +28,19 @@ export const AppRouter = () => {
         <Route path="/login" element={<LoginModal />} />
         <Route
           path="/productos"
-          element={user ? <Productos /> : <Navigate to="/login" />}
+          element={user ? <Productos /> : <Navigate to="/" />}
         />
         <Route
           path="/canchas"
-          element={user ? <Productos /> : <Navigate to="/login" />}
+          element={user ? <Productos /> : <Navigate to="/" />}
         />
         <Route
           path="/camiseta"
-          element={user ? <Camiseta /> : <Navigate to="/login" />}
+          element={user ? <Camiseta /> : <Navigate to="/" />}
         />
         <Route
           path="/carrito"
-          element={user ? <Carrito /> : <Navigate to="/login" />}
+          element={user ? <Carrito /> : <Navigate to="/" />}
         />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/galeria" element={<Galeria />} />

@@ -37,7 +37,7 @@ const RegistrationModal = ({ show, handleClose }) => {
 
     try {
       const response = await testApi.post("/auth/registro", formData);
-
+      console.log(response);
       if (response.data.success) {
         Swal.fire("Éxito", "Usuario registrado con éxito", "success");
         login(response.data.user);

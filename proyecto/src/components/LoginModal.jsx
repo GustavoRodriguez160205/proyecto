@@ -35,6 +35,7 @@ const LoginModal = ({ show, handleClose }) => {
         Swal.fire("Error", response.data.message, "error");
       }
     } catch (error) {
+      console.log(error);
       Swal.fire("Error", "No se pudo iniciar sesión", "error");
     }
   };

@@ -1,0 +1,81 @@
+.product-card .centered-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto; /* Mantener la proporción de la imagen */
+}
+
+.price-text {
+  font-size: 30px;
+  margin-top: 2rem;
+}
+
+.payment-icons img {
+  margin: 10px;
+}
+
+.payment-methods {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.image-gallery {
+  margin-top: 2rem;
+}
+
+.recommendations {
+  margin-top: 2rem;
+}
+
+.recommendations-title {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recommendation-card {
+  width: 75%;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  
+  @font-face {
+    font-family: 'Gotham';
+    src: url('/path/to/fonts/Gotham.woff2') format('woff2'),
+         url('/path/to/fonts/Gotham.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Gotham', sans-serif;
+}
+
+.recommendation-card {
+  width: 85%;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border: 1px solid #ddd; /* Borde ligero */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: #f9f9f9; /* Fondo ligero */
+}
+
+.recommendation-card img {
+  border-radius: 50%; /* Redondear la imagen */
+  width: 50px; /* Tamaño de la imagen */
+  height: 50px; /* Tamaño de la imagen */
+  margin-right: 10px; /* Espacio entre imagen y texto */
+}
+
+.recommendation-card {
+  background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,44 @@
+
+
+.form-container {
+  background-color: #f8f9fa; /* Fondo claro para el formulario */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-label {
+  color: #495057; /* Color oscuro para las etiquetas */
+  font-weight: bold;
+}
+
+.form-control {
+  border-color: #ced4da; /* Color de borde para los inputs */
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.form-control:focus {
+  border-color: #72A1E5; /* Color del borde al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(114, 161, 229, 0.25); /* Sombra azul al enfocar */
+}
+
+.btn-register {
+  background-color: #72A1E5; /* Color de fondo del botón */
+  border-color: #72A1E5; /* Color de borde del botón */
+  color: #fff; /* Color del texto del botón */
+}
+
+.btn-register:hover {
+  background-color: #5b8cce; /* Color del fondo del botón al pasar el mouse */
+  border-color: #5b8cce; /* Color del borde del botón al pasar el mouse */
+}
+
+.btn-register:focus {
+  background-color: #5b8cce; /* Color del fondo del botón al enfocar */
+  border-color: #5b8cce; /* Color del borde del botón al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(91, 140, 206, 0.5); /* Sombra azul al enfocar */
+}
+ 
+.Modal{
+  background-color: aqua;
+}

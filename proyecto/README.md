@@ -35,7 +35,7 @@ EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbo
 
 ## Tecnologías utilizadas
 
-+ **Frontend**: La interfaz de usuario de AlAngulo está construida utilizando tecnologías web modernas como React.js para la creación de componentes interactivos y dinámicos, React Router para la navegación entre páginas, y Bootstrap para el diseño responsivo y la interfaz de usuario amigable.
++ **Frontend**: La interfaz de usuario de EL CLUB está construida utilizando tecnologías web modernas como React.js para la creación de componentes interactivos y dinámicos, React Router para la navegación entre páginas, y Bootstrap para el diseño responsivo y la interfaz de usuario amigable.
 + **Backend**: El backend de la aplicación está desarrollado con Node.js y Express.js para crear una API RESTful que gestiona las solicitudes de los clientes, la autenticación de usuarios y la lógica de negocio relacionada con la gestión de reservas.
 + **Base de datos**: Se utiliza la base de datos MONGODB para almacenar la información de los usuarios, las reservas, los productos y los detalles de las canchas.
 + **Autenticación y autorización**: Se implementa un sistema de autenticación y autorización utilizando JSON Web Tokens (JWT) para garantizar que solo los usuarios registrados puedan realizar reservas y acceder a ciertas funcionalidades de la aplicación.

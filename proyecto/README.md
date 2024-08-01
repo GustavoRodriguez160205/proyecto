@@ -42,7 +42,7 @@ EL CLUB es una plataforma en línea que facilita la reserva de canchas de fútbo
 
 ## Cómo utilizar EL CLUB
 
-+ **Registro**: Crea una cuenta en AlAngulo proporcionando información básica como nombre, correo electrónico y contraseña.
++ **Registro**: Crea una cuenta en EL CLUB proporcionando información básica como nombre, correo electrónico y contraseña.
 + **Inicio de sesión**: Inicia sesión en tu cuenta utilizando las credenciales registradas.
  
 ![Iniciar_Sesion]

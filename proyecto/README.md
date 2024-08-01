@@ -93,7 +93,7 @@ Desde la consola
 
   npm run dev
 
-+Accede a la aplicación:
+ Accede a la aplicación:
 
  Abre tu navegador web y coloca http://localhost:/4000 para ver la aplicación en funcionamiento.
 

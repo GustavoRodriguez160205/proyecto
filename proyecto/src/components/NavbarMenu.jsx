@@ -87,6 +87,15 @@ const NavbarMenu = () => {
                   >
                     Contacto
                   </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/canchas"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Canchas
+                  </NavLink>
                   {user && (
                     <>
                       <NavLink

@@ -102,10 +102,7 @@ export const PaginaCancha = () => {
                               <h6>precio {item.precio}</h6>
                               <button className='my-2 botonCard btn btn-primary' onClick={() => handleShowModal(item)}>
                                 <div className='estilosBoton'>
-                                  <span></span>
-                                  <span className='text'>Reservar</span>
-                                  <span></span>
-                                  <span></span>
+                                <p>reservar</p>
                                 </div>
                               </button>
                             </div>

@@ -8,6 +8,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
+    if (userData.email === "elclubfc@gmail.com") {
+      setIsAdminLoggedIn(true);
+    }
   };
 
   const logout = () => {

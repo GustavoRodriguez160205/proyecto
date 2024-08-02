@@ -1,54 +1,167 @@
+// import React, { useState, useContext } from "react";
+// import { Modal, Button, Form } from "react-bootstrap";
+// import Swal from "sweetalert2";
+// // import axios from "axios";
+// import { AuthContext } from "../context/AuthContext";
+// import testApi from "../api/testApi";
+
+// export const RegistrationModal = ({ show, handleClose }) => {
+//   const [name, setName] = useState("");
+//   const [edad, setEdad] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   const registroBackend = async (name, edad, email, password) => {
+//     try {
+//       const resp = await testApi.post("/auth/registro", {
+//         name,
+//         edad,
+//         email,
+//         password,
+//       });
+//       Swal.fire({
+//         position: "center",
+//         icon: "success",
+//         title: "Usuario registrado con éxito",
+//         showConfirmButton: false,
+//         timer: 1500,
+//       });
+//     } catch (error) {
+//       if (error.response.status === 400) {
+//         Swal.fire({
+//           icon: "error",
+//           title: "Ooops. . .",
+//           text: "El usuario ya existe",
+//         });
+//       } else if (error.response.status === 500) {
+//         Swal.fire({
+//           icon: "error",
+//           title: "Ooops. . .",
+//           text: "Contactarse con un Administrador",
+//         });
+//       }
+//     }
+//   };
+//   const handleRegistro = (e) => {
+//     e.preventDefault();
+
+//     //validaciones
+//     registroBackend(name, edad, email, password);
+//   };
+
+//   return (
+//     <Modal show={show} onHide={handleClose}>
+//       <Modal.Header closeButton>
+//         <Modal.Title>Registro de Usuario</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body style={{ background: "#f5f3f3" }}>
+//         <Form onSubmit={handleRegistro}>
+//           <Form.Group controlId="name">
+//             <Form.Label>Nombre</Form.Label>
+//             <Form.Control
+//               type="text"
+//               // name="name"
+//               // value={formData.name}
+//               onChange={(e) => setName(e.target.value)}
+//               required
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="edad">
+//             <Form.Label>Edad</Form.Label>
+//             <Form.Control
+//               type="number"
+//               // name="edad"
+//               // value={formData.edad}
+//               onChange={(e) => setEdad(e.target.value)}
+//               required
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="email">
+//             <Form.Label>Email</Form.Label>
+//             <Form.Control
+//               type="text"
+//               // name="email"
+//               // value={formData.email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               required
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="password">
+//             <Form.Label>Contraseña</Form.Label>
+//             <Form.Control
+//               type="password"
+//               // name="password"
+//               // value={formData.password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//           </Form.Group>
+
+//           <Button
+//             style={{ background: " #72A1E5" }}
+//             variant=" mt-2 mb-2"
+//             type="submit"
+//           >
+//             Registrar
+//           </Button>
+//         </Form>
+//       </Modal.Body>
+//     </Modal>
+//   );
+// };
+
+// export default RegistrationModal;
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-// import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import testApi from "../api/testApi";
 
-const RegistrationModal = ({ show, handleClose }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    edad: "",
-    email: "",
-    password: "",
-    rol: "Usuario",
-    estado: "activo",
-  });
+export const RegistrationModal = ({ show, handleClose }) => {
   const { login } = useContext(AuthContext);
+  const [name, setName] = useState("");
+  const [edad, setEdad] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const registroBackend = async (name, edad, email, password) => {
+    try {
+      const resp = await testApi.post("/auth/registro", {
+        name,
+        edad,
+        email,
+        password,
+      });
+      const userData = resp.data;
+      login(userData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Usuario registrado con éxito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      handleClose();
+    } catch (error) {
+      if (error.response.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Ooops. . .",
+          text: "El usuario ya existe",
+        });
+      } else if (error.response.status === 500) {
+        Swal.fire({
+          icon: "error",
+          title: "Ooops. . .",
+          text: "Contactarse con un Administrador",
+        });
+      }
+    }
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegistro = (e) => {
     e.preventDefault();
-
-    const { name, edad, email, password, rol, estado } = formData;
-
-    if (!name || !edad || !email || !password || !rol || !estado) {
-      Swal.fire("Error", "Todos los campos son obligatorios", "error");
-      return;
-    }
-
-    if (parseInt(edad, 10) < 18) {
-      Swal.fire("Error", "La edad debe ser mayor a 18 años", "error");
-      return;
-    }
-
-    try {
-      const response = await testApi.post("/auth/registro", formData);
-
-      if (response.data.success) {
-        Swal.fire("Éxito", "Usuario registrado con éxito", "success");
-        login(response.data.user);
-        handleClose();
-        window.location.href = "/"; // Redirigir al home
-      } else {
-        Swal.fire("Error", response.data.message, "error");
-      }
-    } catch (error) {
-      Swal.fire("Error", "No se pudo registrar el usuario", "error");
-    }
+    registroBackend(name, edad, email, password);
   };
 
   return (
@@ -57,14 +170,12 @@ const RegistrationModal = ({ show, handleClose }) => {
         <Modal.Title>Registro de Usuario</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ background: "#f5f3f3" }}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleRegistro}>
           <Form.Group controlId="name">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </Form.Group>
@@ -72,19 +183,15 @@ const RegistrationModal = ({ show, handleClose }) => {
             <Form.Label>Edad</Form.Label>
             <Form.Control
               type="number"
-              name="edad"
-              value={formData.edad}
-              onChange={handleChange}
+              onChange={(e) => setEdad(e.target.value)}
               required
             />
           </Form.Group>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </Form.Group>
@@ -92,38 +199,11 @@ const RegistrationModal = ({ show, handleClose }) => {
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </Form.Group>
-          <Form.Group controlId="rol">
-            <Form.Label>Rol</Form.Label>
-            <Form.Control
-              as="select"
-              name="rol"
-              value={formData.rol}
-              onChange={handleChange}
-              required
-            >
-              <option value="Usuario">Usuario</option>
-              <option value="Admin">Admin</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="estado">
-            <Form.Label>Estado</Form.Label>
-            <Form.Control
-              as="select"
-              name="estado"
-              value={formData.estado}
-              onChange={handleChange}
-              required
-            >
-              <option value="activo">Activo</option>
-              <option value="inactivo">Inactivo</option>
-            </Form.Control>
-          </Form.Group>
+
           <Button
             style={{ background: " #72A1E5" }}
             variant=" mt-2 mb-2"

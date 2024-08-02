@@ -16,7 +16,7 @@ export const TablaProductos = () => {
   const getProductos = async () => {
     try {
       const resp = await testApi.get("/admin/Productos");
-
+      console.log(resp);
       setListaProductos(resp.data.listaProductos);
     } catch (error) {
       console.log(error);
@@ -27,68 +27,69 @@ export const TablaProductos = () => {
     getProductos();
   }, []);
 
-  const crearProductoBackend = async (name, precio, descripcion) => {
-    try {
-      const resp = await testApi.post("/admin/crearProducto", {
-        name,
-        precio,
-        descripcion,
-      });
-      getProductos();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const crearProductoBackend = async (name, precio, descripcion) => {
+  //   try {
+  //     const resp = await testApi.post("/admin/crearProducto", {
+  //       name,
+  //       precio,
+  //       descripcion,
+  //     });
+  //     getProductos();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handelCrearProducto = (e) => {
-    e.preventDefault();
-  };
+  // const handelCrearProducto = (e) => {
+  //   e.preventDefault();
+  // };
 
-  crearProductoBackend(name, precio, descripcion);
-
-  const eliminarProductoClick = async (id) => {
-    try {
-      const resp = await testApi.delete(`/admin/eliminar/${id}`);
-      getProductos();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const editarProducto = (producto) => {
-    setShowEditar(false);
-    setProductoEditar(producto);
-  };
-
-  const handleChangeEditar = (propiedad, valor) => {
-    setProductoEditar({
-      ...productoEditar,
-      [propiedad]: valor,
-    });
-  };
-  const editarProductoBackend = async (producto) => {
-    const { name, precio, descripcion, _id } = producto;
-    try {
-      const resp = await testApi.put("/admin/editarProducto", {
-        name,
-        precio,
-        descripcion,
-        _id,
-      });
-      getProductos();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleEditarProducto = (e) => {
-    e.preventDefault();
-  };
-  editarProductoBackend(productoEditar);
   // crearProductoBackend(name, precio, descripcion);
+
+  // const eliminarProductoClick = async (id) => {
+  //   try {
+  //     const resp = await testApi.delete(`/admin/eliminar/${id}`);
+
+  //     getProductos();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const editarProducto = (producto) => {
+  //   setShowEditar(false);
+  //   setProductoEditar(producto);
+  // };
+
+  // const handleChangeEditar = (propiedad, valor) => {
+  //   setProductoEditar({
+  //     ...productoEditar,
+  //     [propiedad]: valor,
+  //   });
+  // };
+  // const editarProductoBackend = async (producto) => {
+  //   const { name, precio, descripcion, _id } = producto;
+  //   try {
+  //     const resp = await testApi.put("/admin/editarProducto", {
+  //       name,
+  //       precio,
+  //       descripcion,
+  //       _id,
+  //     });
+  //     getProductos();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const handleEditarProducto = (e) => {
+  //   e.preventDefault();
+  // };
+  // editarProductoBackend(productoEditar);
+  // // crearProductoBackend(name, precio, descripcion);
 
   return (
     <div>
-      <Button
+      {/* <Button
         style={{ background: " #72A1E5" }}
         variant=" mt-2 mb-2"
         onClick={handleShow}
@@ -143,7 +144,7 @@ export const TablaProductos = () => {
             </Button>
           </Form>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -165,13 +166,13 @@ export const TablaProductos = () => {
                 <td>
                   <button
                     onClick={() => editarProducto(producto)}
-                    className="btn btn-warning"
+                    className="btn btn-warning "
                   >
                     Editar
                   </button>
                   <button
                     onClick={() => eliminarProductoClick(producto._id)}
-                    className="btn btn-denger ms-2"
+                    className="btn btn-danger ms-2"
                   >
                     Eliminar
                   </button>
@@ -181,7 +182,7 @@ export const TablaProductos = () => {
           })}
         </tbody>
       </Table>
-      <Modal show={showEditar}>
+      {/* <Modal show={showEditar}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
@@ -233,7 +234,7 @@ export const TablaProductos = () => {
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

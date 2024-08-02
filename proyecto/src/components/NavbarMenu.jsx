@@ -7,13 +7,14 @@ import LoginModal from "./LoginModal";
 import AdminLoginModal from "./AdminLoginModal";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/navfoothome.css";
+
 const NavbarMenu = () => {
   let activeStyle = {
     textDecoration: "underline",
     fontWeight: "bold",
   };
 
-  const { user, logout, isAdminLoggedIn, adminLogin } = useContext(AuthContext);
+  const { user, logout, isAdminLoggedIn } = useContext(AuthContext);
 
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
@@ -36,7 +37,6 @@ const NavbarMenu = () => {
     <div>
       <Navbar
         className="navbar-shadow"
-        // fixed="top"
         style={{ background: "#f5f3f3" }}
         expand="lg"
       >
@@ -58,35 +58,77 @@ const NavbarMenu = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              {!isAdminLoggedIn && (
+              <NavLink
+                className="nav-link"
+                to="/"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className="nav-link"
+                to="/nosotros"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Nosotros
+              </NavLink>
+              <NavLink
+                className="nav-link me-2"
+                to="/contacto"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Contacto
+              </NavLink>
+
+              {user && (
                 <>
                   <NavLink
                     className="nav-link"
-                    to="/"
+                    to="/productos"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
                   >
-                    Home
+                    Productos
+                  </NavLink>
+
+                  <NavLink
+                    className="nav-link"
+                    to="/canchas"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Canchas
                   </NavLink>
                   <NavLink
                     className="nav-link"
-                    to="/nosotros"
+                    to="/canchas1"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
                   >
-                    Nosotros
+                    Aquiler de Canchas
                   </NavLink>
                   <NavLink
-                    className="nav-link me-2"
-                    to="/contacto"
+                    className="nav-link"
+                    to="/camiseta"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
                   >
-                    Contacto
+                    Camisetas
                   </NavLink>
+                  <NavLink
+                    className="nav-link "
+                    to="/carrito"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Carrito
+                  </NavLink>
+
                   <NavLink
                     className="nav-link"
                     to="/canchas"
@@ -137,8 +179,10 @@ const NavbarMenu = () => {
                       </NavLink>
                     </>
                   )}
+
                 </>
               )}
+
               {isAdminLoggedIn && (
                 <NavLink
                   className="nav-link"
@@ -164,7 +208,9 @@ const NavbarMenu = () => {
               </>
             ) : user ? (
               <>
-                <Navbar.Text className="me-2">Hola, {user.name}</Navbar.Text>
+                <Navbar.Text className="me-2">
+                  Hola, CRACK del Futbol Mundial {user.name}
+                </Navbar.Text>
                 <Button
                   className="button"
                   variant="secondary"
@@ -208,7 +254,6 @@ const NavbarMenu = () => {
       <AdminLoginModal
         show={showAdminLoginModal}
         handleClose={handleAdminLoginClose}
-        handleAdminLogin={adminLogin}
       />
     </div>
   );

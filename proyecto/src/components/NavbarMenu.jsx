@@ -128,6 +128,58 @@ const NavbarMenu = () => {
                   >
                     Carrito
                   </NavLink>
+
+                  <NavLink
+                    className="nav-link"
+                    to="/canchas"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Canchas
+                  </NavLink>
+                  {user && (
+                    <>
+                      <NavLink
+                        className="nav-link"
+                        to="/productos"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Productos
+                      </NavLink>
+
+                      <NavLink
+                        className="nav-link"
+                        to="/canchas"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Canchas
+                      </NavLink>
+                      <NavLink
+                        className="nav-link"
+                        to="/camiseta"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Camisetas
+                      </NavLink>
+                      <NavLink
+                        className="nav-link "
+                        to="/carrito"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Carrito
+                      </NavLink>
+                    </>
+                  )}
+
                 </>
               )}
 

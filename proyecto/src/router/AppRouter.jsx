@@ -33,7 +33,7 @@ export const AppRouter = () => {
         />
         <Route
           path="/canchas"
-          element={user ? <Productos /> : <Navigate to="/login" />}
+          element={user ? <Galeria /> : <Navigate to="/login" />}
         />
         <Route
           path="/camiseta"

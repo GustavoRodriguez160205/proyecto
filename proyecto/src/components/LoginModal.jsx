@@ -17,7 +17,8 @@ const LoginModal = ({ show, handleClose }) => {
         email,
         password,
       });
-      login(resp.data);
+      const userData = resp.data;
+      login(userData);
       Swal.fire({
         position: "center",
         icon: "success",

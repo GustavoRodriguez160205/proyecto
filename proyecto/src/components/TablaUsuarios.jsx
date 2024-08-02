@@ -40,7 +40,7 @@ export const TablaUsuarios = () => {
                 <td>{usuario.edad}</td>
                 <td>{usuario.email}</td>
                 <td>
-                  <Button variant="primary" type="submit">
+                  <Button variant="info" type="submit">
                     Suspender
                   </Button>
                   {/* <button>suspender</button> */}

@@ -16,7 +16,7 @@ export const TablaCanchas = () => {
   const getCanchas = async () => {
     try {
       const resp = await testApi.get("/admin/canchas");
-
+      console.log(resp.data.listaCanchas);
       setListaCanchas(resp.data.listaCanchas);
     } catch (error) {
       console.log(error);
@@ -27,67 +27,67 @@ export const TablaCanchas = () => {
     getCanchas();
   }, []);
 
-  const crearCanchaBackend = async (name, descripcion, estado) => {
-    try {
-      const resp = await testApi.post("/admin/crearCancha", {
-        name,
-        descripcion,
-        estado,
-      });
-      getCanchas();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const crearCanchaBackend = async (name, descripcion, estado) => {
+  //   try {
+  //     const resp = await testApi.post("/admin/crearCancha", {
+  //       name,
+  //       descripcion,
+  //       estado,
+  //     });
+  //     getCanchas();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handelCrearCancha = (e) => {
-    e.preventDefault();
-  };
+  // const handelCrearCancha = (e) => {
+  //   e.preventDefault();
+  // };
 
-  crearCanchaBackend(name, descripcion, estado);
+  // crearCanchaBackend(name, descripcion, estado);
 
-  const eliminarCanchaClick = async (id) => {
-    try {
-      const resp = await testApi.delete(`/admin/eliminarCancha/${id}`);
-      getCanchas();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const eliminarCanchaClick = async (id) => {
+  //   try {
+  //     const resp = await testApi.delete(`/admin/eliminarCancha/${id}`);
+  //     getCanchas();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const editarCancha = (cancha) => {
-    setShowEditar(true);
-    setProductoEditar(cancha);
-  };
+  // const editarCancha = (cancha) => {
+  //   setShowEditar(true);
+  //   setProductoEditar(cancha);
+  // };
 
-  const handleChangeEditar = (propiedad, valor) => {
-    setCanchaEditar({
-      ...canchaEditar,
-      [propiedad]: valor,
-    });
-  };
-  const editarCanchaBackend = async (producto) => {
-    const { name, descripcion, estado, _id } = cancha;
-    try {
-      const resp = await testApi.put("/admin/editarCancha", {
-        name,
-        descripcion,
-        estado,
-        _id,
-      });
-      getCanchas();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleEditarCancha = (e) => {
-    e.preventDefault();
-  };
-  editarCanchaBackend(canchaEditar);
+  // const handleChangeEditar = (propiedad, valor) => {
+  //   setCanchaEditar({
+  //     ...canchaEditar,
+  //     [propiedad]: valor,
+  //   });
+  // };
+  // const editarCanchaBackend = async (producto) => {
+  //   const { name, descripcion, estado, _id } = cancha;
+  //   try {
+  //     const resp = await testApi.put("/admin/editarCancha", {
+  //       name,
+  //       descripcion,
+  //       estado,
+  //       _id,
+  //     });
+  //     getCanchas();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // const handleEditarCancha = (e) => {
+  //   e.preventDefault();
+  // };
+  // editarCanchaBackend(canchaEditar);
 
   return (
     <div>
-      <Button
+      {/* <Button
         style={{ background: " #72A1E5" }}
         variant=" mt-2 mb-2"
         onClick={handleShow}
@@ -142,7 +142,7 @@ export const TablaCanchas = () => {
             </Button>
           </Form>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -154,23 +154,23 @@ export const TablaCanchas = () => {
           </tr>
         </thead>
         <tbody>
-          {listaCanchas.map((cancha) => {
+          {listaCanchas.map((canchas) => {
             return (
               <tr>
-                <td>{cancha._id}</td>
-                <td>{cancha.name}</td>
-                <td>{cancha.descripcion}</td>
-                <td>{cancha.estado}</td>
+                <td>{canchas._id}</td>
+                <td>{canchas.name}</td>
+                <td>{canchas.descripcion}</td>
+                <td>{canchas.estado}</td>
                 <td>
                   <button
-                    onClick={() => editarCancha(cancha)}
+                    onClick={() => editarCancha(canchas)}
                     className="btn btn-warning"
                   >
                     Editar
                   </button>
                   <button
-                    onClick={() => eliminarCanchaClick(cancha._id)}
-                    className="btn btn-denger ms-2"
+                    onClick={() => eliminarCanchaClick(canchas._id)}
+                    className="btn btn-danger ms-2"
                   >
                     Eliminar
                   </button>
@@ -180,7 +180,7 @@ export const TablaCanchas = () => {
           })}
         </tbody>
       </Table>
-      <Modal show={showEditar}>
+      {/* <Modal show={showEditar}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Cancha</Modal.Title>
         </Modal.Header>
@@ -232,7 +232,7 @@ export const TablaCanchas = () => {
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal>
+      </Modal>  */}
     </div>
   );
 };

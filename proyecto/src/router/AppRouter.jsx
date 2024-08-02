@@ -15,6 +15,7 @@ import Administrador from "../pages/Administrador";
 import RegistrationModal from "../components/RegistrationModal";
 import LoginModal from "../components/LoginModal";
 import { AuthContext } from "../context/AuthContext";
+import { PaginaCancha } from "../pages/PaginaCancha";
 
 export const AppRouter = () => {
   const { user, isAdminLoggedIn } = useContext(AuthContext);
@@ -32,7 +33,7 @@ export const AppRouter = () => {
         />
         <Route
           path="/canchas"
-          element={user ? <Productos /> : <Navigate to="/login" />}
+          element={user ? <Galeria /> : <Navigate to="/login" />}
         />
         <Route
           path="/camiseta"
@@ -45,11 +46,13 @@ export const AppRouter = () => {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/nosotros" element={<Nosotros />} />
-        <Route
+        {/* <Route
           path="/administrador"
           element={isAdminLoggedIn ? <Administrador /> : <Navigate to="/" />}
-        />
+        /> */}
         <Route path="*" element={<Error404 />} />
+        <Route path="/administrador" element={<Administrador />} />
+        <Route path="/canchas1" element={<PaginaCancha />} />
       </Routes>
       <Footer />
     </BrowserRouter>

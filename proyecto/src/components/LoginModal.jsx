@@ -1,7 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
+<<<<<<< Updated upstream
 // import axios from "axios";
+=======
+import axios from "axios";
+>>>>>>> Stashed changes
 import { AuthContext } from "../context/AuthContext";
 import testApi from "../api/testApi";
 

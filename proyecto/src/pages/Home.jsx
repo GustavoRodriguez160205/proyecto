@@ -151,7 +151,7 @@ const Home = () => {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">CANCHAS</h5>
                 <p className="card-text flex-grow-1">
-                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 - 11, con iluminación, sintéticas y de césped natural.
+                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 - 11, con iluminación, sintéticas y de césped naturalgi.
                 </p>
                 <div className="d-flex justify-content-around mt-auto">
                   <Button style={{ background: "#72A1E5" }} variant="light me-2">

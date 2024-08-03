@@ -7,7 +7,7 @@ export const TablaCanchas = () => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [estado, setEstado] = useState("");
+  const [estado, setEstado] = useState("true");
   const [showEditar, setShowEditar] = useState("");
   const [canchaEditar, setCanchaEditar] = useState({});
   const handleClose = () => setShow(false);
@@ -27,74 +27,75 @@ export const TablaCanchas = () => {
     getCanchas();
   }, []);
 
-  // const crearCanchaBackend = async (name, descripcion, estado) => {
-  //   try {
-  //     const resp = await testApi.post("/admin/crearCancha", {
-  //       name,
-  //       descripcion,
-  //       estado,
-  //     });
-  //     getCanchas();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const crearCanchaBackend = async (name, descripcion, estado) => {
+    try {
+      const resp = await testApi.post("/admin/crearCancha", {
+        name,
+        descripcion,
+        estado,
+      });
+      getCanchas();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const handelCrearCancha = (e) => {
-  //   e.preventDefault();
-  // };
+  const handelCrearCancha = (e) => {
+    e.preventDefault();
+    //validar
 
-  // crearCanchaBackend(name, descripcion, estado);
+    crearCanchaBackend(name, descripcion, estado);
+  };
 
-  // const eliminarCanchaClick = async (id) => {
-  //   try {
-  //     const resp = await testApi.delete(`/admin/eliminarCancha/${id}`);
-  //     getCanchas();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const eliminarCanchaClick = async (id) => {
+    try {
+      const resp = await testApi.delete(`/admin/eliminarCancha/${id}`);
+      getCanchas();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const editarCancha = (cancha) => {
-  //   setShowEditar(true);
-  //   setProductoEditar(cancha);
-  // };
+  const editarCancha = (cancha) => {
+    setShowEditar(true);
+    setCanchaEditar(cancha);
+  };
 
-  // const handleChangeEditar = (propiedad, valor) => {
-  //   setCanchaEditar({
-  //     ...canchaEditar,
-  //     [propiedad]: valor,
-  //   });
-  // };
-  // const editarCanchaBackend = async (producto) => {
-  //   const { name, descripcion, estado, _id } = cancha;
-  //   try {
-  //     const resp = await testApi.put("/admin/editarCancha", {
-  //       name,
-  //       descripcion,
-  //       estado,
-  //       _id,
-  //     });
-  //     getCanchas();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // const handleEditarCancha = (e) => {
-  //   e.preventDefault();
-  // };
-  // editarCanchaBackend(canchaEditar);
+  const handleChangeEditar = (propiedad, valor) => {
+    setCanchaEditar({
+      ...canchaEditar,
+      [propiedad]: valor,
+    });
+  };
+  const editarCanchaBackend = async (cancha) => {
+    const { name, descripcion, estado, _id } = cancha;
+    try {
+      const resp = await testApi.put("/admin/editarCancha", {
+        name,
+        descripcion,
+        estado,
+        _id,
+      });
+      getCanchas();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleEditarCancha = (e) => {
+    e.preventDefault();
+
+    editarCanchaBackend(canchaEditar);
+  };
 
   return (
     <div>
-      {/* <Button
+      <Button
         style={{ background: " #72A1E5" }}
         variant=" mt-2 mb-2"
         onClick={handleShow}
       >
         + Agregar Cancha
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Crear Cancha</Modal.Title>
@@ -118,16 +119,14 @@ export const TablaCanchas = () => {
                 onChange={(e) => setDescripcion(e.target.value)}
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
               <Form.Label>Estado</Form.Label>
-              <Form.Control
-                type="boolean"
-                onChange={(e) => setEstado(e.target.value)}
-              />
+              <Form.Select onChange={(e) => setEstado(e.target.value)}>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+              </Form.Select>
             </Form.Group>
+
             <Button variant="secondary" onClick={handleClose}>
               Cancelar
             </Button>
@@ -142,7 +141,7 @@ export const TablaCanchas = () => {
             </Button>
           </Form>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -180,7 +179,7 @@ export const TablaCanchas = () => {
           })}
         </tbody>
       </Table>
-      {/* <Modal show={showEditar}>
+      <Modal show={showEditar}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Cancha</Modal.Title>
         </Modal.Header>
@@ -207,16 +206,16 @@ export const TablaCanchas = () => {
                 }
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
               <Form.Label>Estado</Form.Label>
-              <Form.Control
-                type="number"
+              <Form.Select
                 value={canchaEditar.estado}
-                onChange={(e) => handleChangeEditar("estado", e.target.value)}
-              />
+                onChange={(e) => setEstado(e.target.value)}
+              >
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+              </Form.Select>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
@@ -227,12 +226,13 @@ export const TablaCanchas = () => {
               style={{ background: " #72A1E5" }}
               variant=" mt-2 mb-2"
               type="submit"
+              onClick={() => setShowEditar(false)}
             >
               Guardar Cambios
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal>  */}
+      </Modal>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Table } from "react-bootstrap";
+import Swal from "sweetalert2";
 import testApi from "../api/testApi";
 
 export const TablaProductos = () => {
@@ -8,6 +9,8 @@ export const TablaProductos = () => {
   const [name, setName] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [stock, setStock] = useState("");
+  const [estado, setEstado] = useState("true");
   const [showEditar, setShowEditar] = useState("");
   const [productoEditar, setProductoEditar] = useState({});
   const handleClose = () => setShow(false);
@@ -27,69 +30,87 @@ export const TablaProductos = () => {
     getProductos();
   }, []);
 
-  // const crearProductoBackend = async (name, precio, descripcion) => {
-  //   try {
-  //     const resp = await testApi.post("/admin/crearProducto", {
-  //       name,
-  //       precio,
-  //       descripcion,
-  //     });
-  //     getProductos();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const crearProductoBackend = async (
+    name,
+    precio,
+    descripcion,
+    stock,
+    estado
+  ) => {
+    try {
+      const resp = await testApi.post("/admin/crearProducto", {
+        name,
+        precio,
+        descripcion,
+        stock,
+        estado,
+      });
+      //     // Swal.fire({
+      //     //   position: "center",
+      //     //   icon: "success",
+      //     //   title: "Producto Creado Exitosamente",
+      //     //   showConfirmButton: false,
+      //     //   timer: 1500,
+      //     // });
+      getProductos();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const handelCrearProducto = (e) => {
-  //   e.preventDefault();
-  // };
+  const handelCrearProducto = (e) => {
+    e.preventDefault();
+    //validar
 
-  // crearProductoBackend(name, precio, descripcion);
+    crearProductoBackend(name, precio, descripcion, stock, estado);
+  };
 
-  // const eliminarProductoClick = async (id) => {
-  //   try {
-  //     const resp = await testApi.delete(`/admin/eliminar/${id}`);
+  const eliminarProductoClick = async (id) => {
+    try {
+      const resp = await testApi.delete(`/admin/eliminar/${id}`);
 
-  //     getProductos();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      getProductos();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const editarProducto = (producto) => {
-  //   setShowEditar(false);
-  //   setProductoEditar(producto);
-  // };
+  const editarProducto = (producto) => {
+    setShowEditar(true);
+    setProductoEditar(producto);
+  };
 
-  // const handleChangeEditar = (propiedad, valor) => {
-  //   setProductoEditar({
-  //     ...productoEditar,
-  //     [propiedad]: valor,
-  //   });
-  // };
-  // const editarProductoBackend = async (producto) => {
-  //   const { name, precio, descripcion, _id } = producto;
-  //   try {
-  //     const resp = await testApi.put("/admin/editarProducto", {
-  //       name,
-  //       precio,
-  //       descripcion,
-  //       _id,
-  //     });
-  //     getProductos();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // const handleEditarProducto = (e) => {
-  //   e.preventDefault();
-  // };
-  // editarProductoBackend(productoEditar);
-  // // crearProductoBackend(name, precio, descripcion);
+  const handleChangeEditar = (propiedad, valor) => {
+    setProductoEditar({
+      ...productoEditar,
+      [propiedad]: valor,
+    });
+  };
+  const editarProductoBackend = async (producto) => {
+    const { name, precio, descripcion, _id, stock, estado } = producto;
+    try {
+      const resp = await testApi.put("/admin/editarProducto", {
+        name,
+        precio,
+        descripcion,
+        _id,
+        stock,
+        estado,
+      });
+      getProductos();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleEditarProducto = (e) => {
+    e.preventDefault();
+    //validar
+    editarProductoBackend(productoEditar);
+  };
 
   return (
     <div>
-      {/* <Button
+      <Button
         style={{ background: " #72A1E5" }}
         variant=" mt-2 mb-2"
         onClick={handleShow}
@@ -130,6 +151,23 @@ export const TablaProductos = () => {
                 onChange={(e) => setDescripcion(e.target.value)}
               />
             </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Stock</Form.Label>
+              <Form.Control
+                type="number"
+                onChange={(e) => setStock(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
+              <Form.Label>Estado</Form.Label>
+              <Form.Select onChange={(e) => setEstado(e.target.value)}>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+              </Form.Select>
+            </Form.Group>
             <Button variant="secondary" onClick={handleClose}>
               Cancelar
             </Button>
@@ -144,7 +182,7 @@ export const TablaProductos = () => {
             </Button>
           </Form>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -152,6 +190,8 @@ export const TablaProductos = () => {
             <th>Nombre</th>
             <th>Precio</th>
             <th>Descripcion</th>
+            <th>Stock</th>
+            <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -163,6 +203,8 @@ export const TablaProductos = () => {
                 <td>{producto.name}</td>
                 <td>{producto.precio}</td>
                 <td>{producto.descripcion}</td>
+                <td>{producto.stock}</td>
+                <td>{producto.estado}</td>
                 <td>
                   <button
                     onClick={() => editarProducto(producto)}
@@ -182,7 +224,7 @@ export const TablaProductos = () => {
           })}
         </tbody>
       </Table>
-      {/* <Modal show={showEditar}>
+      <Modal show={showEditar}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
@@ -220,6 +262,27 @@ export const TablaProductos = () => {
                 }
               />
             </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Stock</Form.Label>
+              <Form.Control
+                type="number"
+                value={productoEditar.stock}
+                onChange={(e) => setStock(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
+              <Form.Label>Estado</Form.Label>
+              <Form.Select
+                value={productoEditar.estado}
+                onChange={(e) => setEstado(e.target.value)}
+              >
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+              </Form.Select>
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowEditar(false)}>
@@ -229,12 +292,13 @@ export const TablaProductos = () => {
               style={{ background: " #72A1E5" }}
               variant=" mt-2 mb-2"
               type="submit"
+              onClick={() => setShowEditar(false)}
             >
               Guardar cambios
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal> */}
+      </Modal>
     </div>
   );
 };

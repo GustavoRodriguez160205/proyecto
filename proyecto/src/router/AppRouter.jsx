@@ -46,10 +46,10 @@ export const AppRouter = () => {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/nosotros" element={<Nosotros />} />
-        {/* <Route
+        <Route
           path="/administrador"
           element={isAdminLoggedIn ? <Administrador /> : <Navigate to="/" />}
-        /> */}
+        />
         <Route path="*" element={<Error404 />} />
         <Route path="/administrador" element={<Administrador />} />
         <Route path="/canchas1" element={<PaginaCancha />} />

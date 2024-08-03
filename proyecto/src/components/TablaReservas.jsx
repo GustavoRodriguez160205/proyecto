@@ -42,7 +42,6 @@ export const TablaReservas = () => {
                 <td>{reserva.horaInicio}</td>
                 <td>{reserva.horaFin}</td>
                 <td>
-                  {/* <Button type="submit">Suspender</Button> */}
                   <button
                     onClick={() => editarCancha(reserva)}
                     className="btn btn-warning "
@@ -55,7 +54,6 @@ export const TablaReservas = () => {
                   >
                     Eliminar
                   </button>
-                  {/* <button>suspender</button> */}
                 </td>
               </tr>
             );

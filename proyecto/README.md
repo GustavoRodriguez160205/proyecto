@@ -1,4 +1,6 @@
 
+
+
 <h1 align="center"> EL CLUB</h1>
 
 ## Tabla de contenidos:
@@ -103,7 +105,5 @@ Desde la consola
 + [Claudio Adrian Toledo](https://github.com/CLAUDIOTOLEDO252208)
 + [Nico Peñaloza](https://github.com/Nicogdp)
 + [Matias A. Dias Linares]()
-
-
 
 

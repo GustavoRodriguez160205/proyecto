@@ -1,15 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-// import axios from "axios";
-=======
-import axios from "axios";
->>>>>>> Stashed changes
-=======
-import axios from "axios";
->>>>>>> 45de1c55af7c9c7992ca3f4807a273d985ad418c
 import { AuthContext } from "../context/AuthContext";
 import testApi from "../api/testApi";
 

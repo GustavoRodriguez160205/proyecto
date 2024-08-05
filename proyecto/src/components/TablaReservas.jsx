@@ -7,7 +7,7 @@ export const TablaReservas = () => {
 
   const getReservas = async () => {
     try {
-      const resp = await testApi.get("/admin/reservas");
+      const resp = await testApi.get("/auth/reservas");
       console.log(resp);
       setListaReservas(resp.data.listaReservas);
     } catch (error) {
@@ -42,8 +42,18 @@ export const TablaReservas = () => {
                 <td>{reserva.horaInicio}</td>
                 <td>{reserva.horaFin}</td>
                 <td>
-                  <Button type="submit">Suspender</Button>
-                  {/* <button>suspender</button> */}
+                  <button
+                    onClick={() => editarCancha(reserva)}
+                    className="btn btn-warning "
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => eliminarCanchaClick(reserva._id)}
+                    className="btn btn-danger ms-2"
+                  >
+                    Eliminar
+                  </button>
                 </td>
               </tr>
             );

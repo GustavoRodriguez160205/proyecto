@@ -6,6 +6,7 @@ import RegistrationModal from "./RegistrationModal";
 import LoginModal from "./LoginModal";
 import AdminLoginModal from "./AdminLoginModal";
 import { AuthContext } from "../context/AuthContext";
+import "../styles/navfoothome.css";
 
 const NavbarMenu = () => {
   let activeStyle = {
@@ -13,7 +14,7 @@ const NavbarMenu = () => {
     fontWeight: "bold",
   };
 
-  const { user, logout, isAdminLoggedIn, adminLogin } = useContext(AuthContext);
+  const { user, logout, isAdminLoggedIn } = useContext(AuthContext);
 
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
@@ -34,7 +35,11 @@ const NavbarMenu = () => {
 
   return (
     <div>
-      <Navbar style={{ background: "#f5f3f3" }} expand="lg">
+      <Navbar
+        className="navbar-shadow"
+        style={{ background: "#f5f3f3" }}
+        expand="lg"
+      >
         <Container fluid>
           <Navbar.Brand href="#">
             <img
@@ -53,35 +58,40 @@ const NavbarMenu = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              {!isAdminLoggedIn && (
+              <NavLink
+                className="nav-link"
+                to="/"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className="nav-link"
+                to="/nosotros"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Nosotros
+              </NavLink>
+              <NavLink
+                className="nav-link me-2"
+                to="/contacto"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Contacto
+              </NavLink>
+
+              {user && (
                 <>
                   <NavLink
                     className="nav-link"
-                    to="/"
+                    to="/productos"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
                   >
-                    Home
+                    Productos
                   </NavLink>
-                  <NavLink
-                    className="nav-link"
-                    to="/nosotros"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Nosotros
-                  </NavLink>
-                  <NavLink
-                    className="nav-link"
-                    to="/contacto"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Contacto
-                  </NavLink>
+
                   <NavLink
                     className="nav-link"
                     to="/canchas"
@@ -91,39 +101,48 @@ const NavbarMenu = () => {
                   >
                     Canchas
                   </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/canchas1"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Aquiler de Canchas
+                  </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/camiseta"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Camisetas
+                  </NavLink>
+                  <NavLink
+                    className="nav-link "
+                    to="/carrito"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Carrito
+                  </NavLink>
+
+                  
                   {user && (
                     <>
-                      <NavLink
-                        className="nav-link"
-                        to="/productos"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Productos
-                      </NavLink>
-                      <NavLink
-                        className="nav-link"
-                        to="/camiseta"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Camisetas
-                      </NavLink>
-                      <NavLink
-                        className="nav-link"
-                        to="/carrito"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Carrito
-                      </NavLink>
+                      
+
+                     
+                     
+                     
                     </>
                   )}
+
                 </>
               )}
+
               {isAdminLoggedIn && (
                 <NavLink
                   className="nav-link"
@@ -139,20 +158,31 @@ const NavbarMenu = () => {
                 <Navbar.Text className="me-2">
                   HOLA !, ADMINISTRADOR
                 </Navbar.Text>
-                <Button variant="secondary" onClick={handleLogout}>
+                <Button
+                  className="button"
+                  variant="secondary"
+                  onClick={handleLogout}
+                >
                   Cerrar Sesión
                 </Button>
               </>
             ) : user ? (
               <>
-                <Navbar.Text className="me-2">Hola, {user.name}</Navbar.Text>
-                <Button variant="secondary" onClick={handleLogout}>
+                <Navbar.Text className="me-2">
+                  Hola, CRACK del Futbol Mundial {user.name}
+                </Navbar.Text>
+                <Button
+                  className="button"
+                  variant="secondary"
+                  onClick={handleLogout}
+                >
                   Cerrar Sesión
                 </Button>
               </>
             ) : (
               <>
                 <Button
+                  className="button"
                   style={{ background: " #72A1E5" }}
                   variant="light me-4"
                   onClick={handleShow}
@@ -160,13 +190,18 @@ const NavbarMenu = () => {
                   Registrarse
                 </Button>
                 <Button
+                  className="button"
                   style={{ background: " #72A1E5" }}
                   variant="light me-4"
                   onClick={handleLoginShow}
                 >
                   Iniciar Sesión
                 </Button>
-                <Button variant="dark" onClick={handleAdminLoginShow}>
+                <Button
+                  className="button"
+                  variant="dark"
+                  onClick={handleAdminLoginShow}
+                >
                   Admin
                 </Button>
               </>
@@ -179,7 +214,6 @@ const NavbarMenu = () => {
       <AdminLoginModal
         show={showAdminLoginModal}
         handleClose={handleAdminLoginClose}
-        handleAdminLogin={adminLogin}
       />
     </div>
   );

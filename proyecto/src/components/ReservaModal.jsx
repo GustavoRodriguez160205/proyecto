@@ -1,13 +1,13 @@
-// ReservaModal.jsx
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import testApi from '../api/testApi';
 
-const ReservaModal = ({ show, handleClose, cancha }) => {
+
+const ReservaModal = ({ show, handleClose, cancha, refreshReservas }) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [minDate, setMinDate] = useState('');
   const [minTime, setMinTime] = useState('');
-
 
   useEffect(() => {
     const now = new Date();
@@ -18,19 +18,41 @@ const ReservaModal = ({ show, handleClose, cancha }) => {
     setMinTime(localISOTime.slice(11, 16));
   }, [show]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí se maneja la lógica de reserva (enviar datos al backend, etc.)
-    console.log(`Reservando la cancha ${cancha.nombre} para el ${date} a las ${time}`);
-    handleClose();
-  };
+
+
+  
+  const handleSubmit = async (e) =>{
+     e.preventDefault();
+    try {
+      const resp =  await testApi.post ('/auth/reservarCancha',{
+        id_cancha:'cancha',
+        id_usuario:usuario,
+        fecha:date,
+        horaInicio:time,
+        horaFin:time,
+      });
+      console.log(resp),
+     
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Reservando la cancha ${cancha.name} para el dia ${date} a las ${time}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      handleClose();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const isPastDate = date && new Date(date) < new Date(minDate);
   const isPastTime = time && date === minDate && time < minTime;
 
   return (
     <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Reservar {cancha.nombre}</Modal.Title>
+        <Modal.Title>Reservar {cancha.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row>
@@ -39,10 +61,10 @@ const ReservaModal = ({ show, handleClose, cancha }) => {
               <>
                 <img
                   src={cancha.imagen}
-                  alt={cancha.nombre}
+                  alt={cancha.name}
                   style={{ width: '100%', borderRadius: '8px' }}
                 />
-                <h4 className="mt-3">{cancha.nombre}</h4>
+                <h4 className="mt-3">{cancha.name}</h4>
               </>
             )}
           </Col>

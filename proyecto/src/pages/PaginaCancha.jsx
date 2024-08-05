@@ -1,16 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/cancha.css'
 import canchaBanner from '../image/cancha10.webp'
-import dataCancha from '../hooks/canchaData'
 import { Button, Card, Col, Container, Figure, Row } from 'react-bootstrap'
 import ReservaModal from '../components/ReservaModal'
+import testApi from '../api/testApi'
 
 
 export const PaginaCancha = () => {
    
   const [searchTerm,setSearchTerm] = useState('')
   const [selectedCancha, setSelectedCancha] = useState(null);
+  const [listacanchas,setListaCanchas] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  const getCanchas = async () => {
+    try {
+      const resp = await testApi.get("/admin/canchas");
+      console.log(resp.data.listaCanchas);
+      setListaCanchas(resp.data.listaCanchas);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCanchas();
+  }, []);
 
   const handleShowModal = (cancha) => {
     setSelectedCancha(cancha);
@@ -77,32 +92,32 @@ export const PaginaCancha = () => {
         </form>
           <div>
             {
-               dataCancha.filter((item) => {
+               listacanchas.filter((canchas) => {
                 if(searchTerm === ''){
-                  return item;
-                }else if(item.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-                   || item.tipo.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())){
-                  return item;
+                  return canchas;
+                }else if(canchas.name.toLowerCase().includes(searchTerm.toLowerCase())
+                   || canchas.cesped.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                  return canchas;
                 }{
                   
                 }
               })
-              .map((item) => (
+              .map((canchas) => (
                 <article className='container-md'>
                   <section className='row'>
                     <div className='col-12'>
                       <article className='container-md p-0 my-4 canchaCardContenedor'>
                         <div className='bg-dark text-white card'>
-                          <img className='car-img canchaCardImagen' src={item.imagen} alt={item.nombre} />
+                          <img className='car-img canchaCardImagen' src={canchas.imagen} alt={canchas.name} />
                           <div className='overlay cardImagenOverlay'>
-                            <div className='subtitle cardTitulo h2 parrafoEstilo'>{item.nombre}</div>
-                              <h3 className='canchaTexto parrafoEstilo'>Descripcion: {item.descripcion}</h3>
-                              <h4 className='parrafoEstilo'>Tamaño: {item.tamaño}</h4>
-                              <h5>Tipo: {item.tipo}</h5>
-                              <h6>precio {item.precio}</h6>
-                              <button className='my-2 botonCard btn btn-primary' onClick={() => handleShowModal(item)}>
+                            <div className='subtitle cardTitulo h2 parrafoEstilo'>{canchas.name}</div>
+                              <h3 className='canchaTexto parrafoEstilo'>Descripcion: {canchas.descripcion}</h3>
+                              <h4 className='parrafoEstilo'>Tamaño: {canchas.tamanio}</h4>
+                              <h5>Tipo: {canchas.cesped}</h5>
+                              <h6>Precio:$ {canchas.precio}</h6>
+                              <button className='my-2 botonCard btn btn-primary' onClick={() => handleShowModal(canchas)}>
                                 <div className='estilosBoton'>
-                                <p>reservar</p>
+                                <p>Reservar</p>
                                 </div>
                               </button>
                             </div>

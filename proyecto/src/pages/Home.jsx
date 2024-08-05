@@ -41,14 +41,14 @@ const Home = () => {
           <img className="d-block w-100" src={portada6} alt="Portada 6" />
           <Carousel.Caption>
             <h3>DESCUBRÍ LAS MEJORES CANCHAS DE ARGENTINA</h3>
-            <p>Fútbol 5, 7 y 11.</p>
+            <p>Fútbol 5, 7 .</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portada4} alt="Portada 4" />
           <Carousel.Caption>
             <h3>VENÍ A ENTRENAR CON TU EQUIPO</h3>
-            <p>Fútbol 5, 7 y 11.</p>
+            <p>Fútbol 5, 7 .</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -62,14 +62,14 @@ const Home = () => {
           <img className="d-block w-100" src={imagen9} alt="Imagen 9" />
           <Carousel.Caption>
             <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
-            <p>Fútbol 5, 7 y 11.</p>
+            <p>Fútbol 5, 7 .</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portadafemenino} alt="Portada Femenino" />
           <Carousel.Caption>
             <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
-            <p>Fútbol 5, 7 y 11.</p>
+            <p>Fútbol 5, 7 .</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -151,7 +151,7 @@ const Home = () => {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">CANCHAS</h5>
                 <p className="card-text flex-grow-1">
-                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 - 11, con iluminación, sintéticas y de césped natural.
+                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 - 11, con iluminación, sintéticas y de césped naturalgi.
                 </p>
                 <div className="d-flex justify-content-around mt-auto">
                   <Button style={{ background: "#72A1E5" }} variant="light me-2">

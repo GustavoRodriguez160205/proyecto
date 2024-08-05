@@ -1,81 +1,93 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import testApi from "../api/testApi";
 
 const LoginModal = ({ show, handleClose }) => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const { login } = useContext(AuthContext);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const loginBackend = async (email, password) => {
+    try {
+      const resp = await testApi.post("/auth/login", {
+        email,
+        password,
+      });
+      const userData = resp.data;
+      login(userData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Usuario Logueado con éxito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      handleClose();
+      localStorage.setItem("token", resp.data.token);
+    } catch (error) {
+      if (error.response.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Ooops. . .",
+          text: "El Usuario no existe",
+        });
+      } else if (error.response.status === 500) {
+        Swal.fire({
+          icon: "error",
+          title: "Ooops. . .",
+          text: "Contactarse con un Administrador",
+        });
+      }
+    }
   };
-
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    const { email, password } = formData;
-
-    if (!email || !password) {
-      Swal.fire("Error", "Todos los campos son obligatorios", "error");
-      return;
-    }
-
-    try {
-      const response = await axios.post("/auth/login", formData);
-
-      if (response.data.success) {
-        Swal.fire("Éxito", "Inicio de sesión exitoso", "success");
-        login(response.data.user);
-        handleClose();
-        window.location.href = "/ administrador"; // Redirigir al home
-      } else {
-        Swal.fire("Error", response.data.message, "error");
-      }
-    } catch (error) {
-      Swal.fire("Error", "No se pudo iniciar sesión", "error");
-    }
+    //validaciones
+    loginBackend(email, password);
   };
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Iniciar Sesión</Modal.Title>
+        <Modal.Title>Inicias Sesion</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ background: "#f5f3f3" }}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleLogin}>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              type="text"
+              // name="email"
+              // value={formData.email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </Form.Group>
           <Form.Group controlId="password">
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              type="text"
+              // name="password"
+              // value={formData.password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </Form.Group>
+
           <Button
             style={{ background: " #72A1E5" }}
             variant=" mt-2 mb-2"
             type="submit"
           >
-            Iniciar Sesión
+            Inicias Sesion
           </Button>
         </Form>
       </Modal.Body>
     </Modal>
   );
 };
-
 export default LoginModal;

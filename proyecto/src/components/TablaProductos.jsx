@@ -10,6 +10,7 @@ export const TablaProductos = () => {
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [stock, setStock] = useState("");
+  const [imagen, setImagen] = useState("");
   const [estado, setEstado] = useState("true");
   const [showEditar, setShowEditar] = useState("false");
   const [productoEditar, setProductoEditar] = useState({});
@@ -33,12 +34,13 @@ export const TablaProductos = () => {
     getProductos();
   }, []);
 
-  const crearProductoBackend = async ( name,precio,  descripcion,stock, estado) => {
+  const crearProductoBackend = async ( name,precio, descripcion,imagen,stock, estado) => {
     try {
       const resp = await testApi.post("/admin/crearProducto", {
         name,
         precio,
         descripcion,
+        imagen,
         stock,
         estado,
       });
@@ -59,7 +61,7 @@ export const TablaProductos = () => {
     e.preventDefault();
     //validar
 
-    crearProductoBackend(name, precio, descripcion, stock, estado);
+    crearProductoBackend(name, precio, descripcion,imagen, stock, estado);
   };
 
   const eliminarProductoClick = async (id) => {
@@ -86,15 +88,16 @@ export const TablaProductos = () => {
 
 
   const editarProductoBackend = async (producto) => {
-    const { _id,name, precio, descripcion, stock, estado } = producto;
+    const { name, precio, descripcion,imagen, stock, estado,_id } = producto;
     try {
       const resp = await testApi.put("/admin/editarProducto", {
         name,
         precio,
         descripcion,
-        _id,
+        imagen,
         stock,
         estado,
+        _id,
       });
       Swal.fire({
         position: "center",
@@ -163,6 +166,16 @@ export const TablaProductos = () => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => setImagen(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 type="number"
@@ -191,6 +204,7 @@ export const TablaProductos = () => {
           </Form>
         </Modal.Body>
       </Modal>
+      <div className="table-responsive">
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -198,6 +212,7 @@ export const TablaProductos = () => {
             <th>Nombre</th>
             <th>Precio</th>
             <th>Descripcion</th>
+            <th>Imagen</th>
             <th>Stock</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -207,12 +222,13 @@ export const TablaProductos = () => {
           {listaProductos.map((producto) => {
             return (
               <tr>
-                <td>{producto._id}</td>
                 <td>{producto.name}</td>
                 <td>{producto.precio}</td>
                 <td>{producto.descripcion}</td>
+                <td>{producto.imagen}</td>
                 <td>{producto.stock}</td>
                 <td>{producto.estado}</td>
+                <td>{producto._id}</td>
                 <td>
                   <button
                     onClick={() => editarProducto(producto)}
@@ -232,6 +248,8 @@ export const TablaProductos = () => {
           })}
         </tbody>
       </Table>
+
+      </div>
       <Modal show={showEditar}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
@@ -254,7 +272,8 @@ export const TablaProductos = () => {
               <Form.Control
                 type="number"
                 value={productoEditar.precio}
-                onChange={(e) => handleChangeEditar("precio", parseFloat(e.target.value))}
+                onChange={(e) => 
+                  handleChangeEditar("precio",(e.target.value))}
               />
             </Form.Group>
             <Form.Group
@@ -274,11 +293,26 @@ export const TablaProductos = () => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control
+                type="text"
+                value={productoEditar.imagen}
+                onChange={(e) =>
+                  handleChangeEditar("imagen", e.target.value)
+                }
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 type="number"
                 value={productoEditar.stock}
-                onChange={(e) => setStock(e.target.value)}
+                onChange={(e) => 
+                  handleChangeEditar("stock", e.target.value)
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">

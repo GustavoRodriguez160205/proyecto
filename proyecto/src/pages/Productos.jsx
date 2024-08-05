@@ -66,10 +66,10 @@ function Productos() {
               .map((productos) => {
                 return (
                   <Card style={{ width: '18rem', marginTop: "2rem", marginBottom: "2rem", marginLeft: '5%' }}>
-                    <CardImg src='src/image/afa1.JPG'></CardImg>
+                    <CardImg src={productos.imagen}></CardImg>
                     <Card.Body className="text-center">
                  <Card.Title>{productos.name}</Card.Title>
-                 <Card.Title>{productos.precio}</Card.Title>
+                 <Card.Title>${productos.precio}</Card.Title>
                  <Card.Title>{productos.descripcion}</Card.Title>
                  <Link to="/Camiseta">
                 <Button variant="primary">Ver más</Button>

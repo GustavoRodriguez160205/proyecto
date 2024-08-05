@@ -114,10 +114,10 @@ export const PaginaCancha = () => {
                               <h3 className='canchaTexto parrafoEstilo'>Descripcion: {canchas.descripcion}</h3>
                               <h4 className='parrafoEstilo'>Tamaño: {canchas.tamanio}</h4>
                               <h5>Tipo: {canchas.cesped}</h5>
-                              <h6>precio {canchas.precio}</h6>
+                              <h6>Precio:$ {canchas.precio}</h6>
                               <button className='my-2 botonCard btn btn-primary' onClick={() => handleShowModal(canchas)}>
                                 <div className='estilosBoton'>
-                                <p>reservar</p>
+                                <p>Reservar</p>
                                 </div>
                               </button>
                             </div>

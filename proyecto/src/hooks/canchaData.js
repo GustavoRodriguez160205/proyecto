@@ -26,6 +26,9 @@ const dataCancha = [
         precio:'18.000',
         tamaño:11,
         imagen:'https://th.bing.com/th/id/OIP.OCHh31vC5mRa2vgUvDC-qQHaFj?w=3000&h=2250&rs=1&pid=ImgDetMain',
+    },
+    {
+        imagenesCamisetas: "src/image/afa1.JPG" , "src/image/afa3.JPG",
     }
  ]
 export default dataCancha

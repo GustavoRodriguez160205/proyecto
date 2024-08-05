@@ -11,10 +11,13 @@ export const TablaProductos = () => {
   const [descripcion, setDescripcion] = useState("");
   const [stock, setStock] = useState("");
   const [estado, setEstado] = useState("true");
-  const [showEditar, setShowEditar] = useState("");
+  const [showEditar, setShowEditar] = useState("false");
   const [productoEditar, setProductoEditar] = useState({});
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseEditar = () => setShowEditar(false);
 
   const getProductos = async () => {
     try {
@@ -30,13 +33,7 @@ export const TablaProductos = () => {
     getProductos();
   }, []);
 
-  const crearProductoBackend = async (
-    name,
-    precio,
-    descripcion,
-    stock,
-    estado
-  ) => {
+  const crearProductoBackend = async ( name,precio,  descripcion,stock, estado) => {
     try {
       const resp = await testApi.post("/admin/crearProducto", {
         name,
@@ -45,13 +42,13 @@ export const TablaProductos = () => {
         stock,
         estado,
       });
-      //     // Swal.fire({
-      //     //   position: "center",
-      //     //   icon: "success",
-      //     //   title: "Producto Creado Exitosamente",
-      //     //   showConfirmButton: false,
-      //     //   timer: 1500,
-      //     // });
+           Swal.fire({
+             position: "center",
+             icon: "success",
+             title: "Producto Creado Exitosamente",
+             showConfirmButton: false,
+             timer: 1500,
+           });
       getProductos();
     } catch (error) {
       console.log(error);
@@ -67,7 +64,7 @@ export const TablaProductos = () => {
 
   const eliminarProductoClick = async (id) => {
     try {
-      const resp = await testApi.delete(`/admin/eliminar/${id}`);
+      const resp = await testApi.delete(`/admin/eliminarProducto/${id}`);
 
       getProductos();
     } catch (error) {
@@ -76,8 +73,8 @@ export const TablaProductos = () => {
   };
 
   const editarProducto = (producto) => {
-    setShowEditar(true);
     setProductoEditar(producto);
+    setShowEditar(true);
   };
 
   const handleChangeEditar = (propiedad, valor) => {
@@ -86,8 +83,10 @@ export const TablaProductos = () => {
       [propiedad]: valor,
     });
   };
+
+
   const editarProductoBackend = async (producto) => {
-    const { name, precio, descripcion, _id, stock, estado } = producto;
+    const { _id,name, precio, descripcion, stock, estado } = producto;
     try {
       const resp = await testApi.put("/admin/editarProducto", {
         name,
@@ -97,15 +96,24 @@ export const TablaProductos = () => {
         stock,
         estado,
       });
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Producto Editado Exitosamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       getProductos();
     } catch (error) {
       console.log(error);
     }
   };
+
+
   const handleEditarProducto = (e) => {
     e.preventDefault();
-    //validar
     editarProductoBackend(productoEditar);
+    handleCloseEditar();
   };
 
   return (
@@ -240,13 +248,13 @@ export const TablaProductos = () => {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+              controlId="editarPrecio prdocuto"
             >
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 type="number"
                 value={productoEditar.precio}
-                onChange={(e) => handleChangeEditar("precio", e.target.value)}
+                onChange={(e) => handleChangeEditar("precio", parseFloat(e.target.value))}
               />
             </Form.Group>
             <Form.Group

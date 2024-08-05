@@ -19,11 +19,7 @@ const ReservaModal = ({ show, handleClose, cancha, refreshReservas }) => {
   }, [show]);
 
 
-var token = response.headers.authorization;
- token = token.replace('Bearer','');
- var jwt = require('jsonwebtoken');
- var decoded = jwt.decode(token);
- console.log(decoded);
+
   
   const handleSubmit = async (e) =>{
      e.preventDefault();

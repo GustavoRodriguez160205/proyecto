@@ -104,4 +104,4 @@ Desde la consola
 + [Claudio Adrian Toledo](https://github.com/CLAUDIOTOLEDO252208)
 + [Nico Peñaloza](https://github.com/Nicogdp)
 + [Matias A. Dias Linares]()
-
++ [Gustavo Rodriguez](https://github.com/GustavoRodriguez160205)

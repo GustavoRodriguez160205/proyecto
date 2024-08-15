@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import logosinfondo from "../image/logosinfondo.png";
 import RegistrationModal from "./RegistrationModal";
 import LoginModal from "./LoginModal";
-import AdminLoginModal from "./AdminLoginModal";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/navfoothome.css";
 
@@ -24,10 +23,6 @@ const NavbarMenu = () => {
   const handleLoginShow = () => setShowLoginModal(true);
   const handleLoginClose = () => setShowLoginModal(false);
 
-  const [showAdminLoginModal, setShowAdminLoginModal] = useState(false);
-  const handleAdminLoginShow = () => setShowAdminLoginModal(true);
-  const handleAdminLoginClose = () => setShowAdminLoginModal(false);
-
   const handleLogout = () => {
     logout();
     window.location.href = "/";
@@ -41,7 +36,7 @@ const NavbarMenu = () => {
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img
               src={logosinfondo}
               width="100"
@@ -58,88 +53,86 @@ const NavbarMenu = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <NavLink
-                className="nav-link"
-                to="/"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                Home
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                to="/nosotros"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                Nosotros
-              </NavLink>
-              <NavLink
-                className="nav-link me-2"
-                to="/contacto"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                Contacto
-              </NavLink>
-
-              {user && (
+              {!isAdminLoggedIn && (
                 <>
                   <NavLink
                     className="nav-link"
-                    to="/productos"
+                    to="/"
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
                   >
-                    Productos
+                    Home
+                  </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/nosotros"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Nosotros
+                  </NavLink>
+                  <NavLink
+                    className="nav-link me-2"
+                    to="/contacto"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Contacto
                   </NavLink>
 
-                  <NavLink
-                    className="nav-link"
-                    to="/canchas"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Canchas
-                  </NavLink>
-                  <NavLink
-                    className="nav-link"
-                    to="/canchas1"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Aquiler de Canchas
-                  </NavLink>
-                  <NavLink
-                    className="nav-link"
-                    to="/camiseta"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Camisetas
-                  </NavLink>
-                  <NavLink
-                    className="nav-link "
-                    to="/carrito"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Carrito
-                  </NavLink>
-
-                  
                   {user && (
                     <>
-                      
+                      <NavLink
+                        className="nav-link"
+                        to="/productos"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Productos
+                      </NavLink>
 
-                     
-                     
-                     
+                      <NavLink
+                        className="nav-link"
+                        to="/canchas"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Canchas
+                      </NavLink>
+                      <NavLink
+                        className="nav-link"
+                        to="/canchas1"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Alquiler de Canchas
+                      </NavLink>
+                      <NavLink
+                        className="nav-link"
+                        to="/camiseta"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Camisetas
+                      </NavLink>
+                      <NavLink
+                        className="nav-link "
+                        to="/carrito"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        Carrito
+                      </NavLink>
                     </>
                   )}
-
                 </>
               )}
 
@@ -169,7 +162,7 @@ const NavbarMenu = () => {
             ) : user ? (
               <>
                 <Navbar.Text className="me-2">
-                  Hola, CRACK del Futbol Mundial {user.name}
+                  Hola, {user.nombre_usuario || user.email}
                 </Navbar.Text>
                 <Button
                   className="button"
@@ -197,13 +190,6 @@ const NavbarMenu = () => {
                 >
                   Iniciar Sesión
                 </Button>
-                <Button
-                  className="button"
-                  variant="dark"
-                  onClick={handleAdminLoginShow}
-                >
-                  Admin
-                </Button>
               </>
             )}
           </Navbar.Collapse>
@@ -211,10 +197,6 @@ const NavbarMenu = () => {
       </Navbar>
       <RegistrationModal show={showModal} handleClose={handleClose} />
       <LoginModal show={showLoginModal} handleClose={handleLoginClose} />
-      <AdminLoginModal
-        show={showAdminLoginModal}
-        handleClose={handleAdminLoginClose}
-      />
     </div>
   );
 };

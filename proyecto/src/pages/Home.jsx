@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import '../styles/home.css'; // Asegúrate de importar tu archivo CSS
+import "../styles/home.css"; // Asegúrate de importar tu archivo CSS
 
 // Importación de imágenes
 import imagen6 from "../image/imagen6.png";
@@ -35,7 +35,10 @@ import portadafemenino from "../image/portadafemenino.jpg";
 
 const Home = () => {
   return (
-    <div className="carousel-container" style={{ margin: '0 auto', padding: '20px' }}>
+    <div
+      className="carousel-container"
+      style={{ margin: "0 auto", padding: "20px" }}
+    >
       <Carousel data-bs-theme="dark">
         <Carousel.Item>
           <img className="d-block w-100" src={portada6} alt="Portada 6" />
@@ -52,7 +55,11 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="d-block w-100" src={estacionamiento} alt="Estacionamiento" />
+          <img
+            className="d-block w-100"
+            src={estacionamiento}
+            alt="Estacionamiento"
+          />
           <Carousel.Caption>
             <h3>SEGURIDAD Y ESTACIONAMIENTO PRIVADO</h3>
             <p>24hs</p>
@@ -66,7 +73,11 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="d-block w-100" src={portadafemenino} alt="Portada Femenino" />
+          <img
+            className="d-block w-100"
+            src={portadafemenino}
+            alt="Portada Femenino"
+          />
           <Carousel.Caption>
             <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
             <p>Fútbol 5, 7 .</p>
@@ -78,7 +89,14 @@ const Home = () => {
         <div className="container py-5">
           <h1 id="titulo">¿QUIÉNES SOMOS?</h1>
           <hr />
-          <p> Somos un grupo de amigos muy futboleros que hace 10 años decidimos reunir en un mismo lugar <strong>la pasión por el fútbol, los amigos y la familia</strong>. Si estás cansado de no conseguir turnos, mandar mensajes y que no te respondan, estás en el lugar correcto, estás a un clic de reservar tu cancha favorita.
+          <p>
+            {" "}
+            Somos un grupo de amigos muy futboleros que hace 10 años decidimos
+            reunir en un mismo lugar{" "}
+            <strong>la pasión por el fútbol, los amigos y la familia</strong>.
+            Si estás cansado de no conseguir turnos, mandar mensajes y que no te
+            respondan, estás en el lugar correcto, estás a un clic de reservar
+            tu cancha favorita.
           </p>
           <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4 py-5">
             <div className="col">
@@ -91,7 +109,9 @@ const Home = () => {
                 <div className="card-body">
                   <h5 className="card-title">ESTACIONAMIENTO</h5>
                   <p className="card-text">
-                    Todas las canchas disponibles cuentan con estacionamiento privado, para de este modo hacer una experiencia más amena y cómoda.
+                    Todas las canchas disponibles cuentan con estacionamiento
+                    privado, para de este modo hacer una experiencia más amena y
+                    cómoda.
                   </p>
                 </div>
                 <div className="d-flex justify-content-around mb-5"></div>
@@ -107,7 +127,9 @@ const Home = () => {
                 <div className="card-body">
                   <h5 className="card-title">VESTUARIOS</h5>
                   <p className="card-text">
-                    Contamos con vestuarios profesionales con vestidores individuales, ducha con agua caliente, sanitarios y todo lo necesario.
+                    Contamos con vestuarios profesionales con vestidores
+                    individuales, ducha con agua caliente, sanitarios y todo lo
+                    necesario.
                   </p>
                 </div>
                 <div className="d-flex justify-content-around mb-5"></div>
@@ -123,7 +145,9 @@ const Home = () => {
                 <div className="card-body">
                   <h5 className="card-title">VALORES</h5>
                   <p className="card-text">
-                    Promovemos el respeto entre todos los miembros de esta comunidad. Entendiendo, brindamos espacios de disfrute entre amigos y familia.
+                    Promovemos el respeto entre todos los miembros de esta
+                    comunidad. Entendiendo, brindamos espacios de disfrute entre
+                    amigos y familia.
                   </p>
                 </div>
                 <div className="d-flex justify-content-around mb-5"></div>
@@ -137,7 +161,9 @@ const Home = () => {
         <h1 id="titulo3">NUESTROS SERVICIOS</h1>
         <hr />
         <p>
-          Te ofrecemos los mejores servicios para pasarla genial con amigos. Además, tenemos ESCUELA DE FÚTBOL INFANTIL - FEMENINO - MIXTOS Y CAMPEONATOS COMPETITIVOS.
+          Te ofrecemos los mejores servicios para pasarla genial con amigos.
+          Además, tenemos ESCUELA DE FÚTBOL INFANTIL - FEMENINO - MIXTOS Y
+          CAMPEONATOS COMPETITIVOS.
         </p>
         <div className="row row-cols-1 row-cols-md-3 g-4 py-5 justify-content-center">
           <div className="col d-flex justify-content-center">
@@ -151,14 +177,15 @@ const Home = () => {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">CANCHAS</h5>
                 <p className="card-text flex-grow-1">
-                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 - 11, con iluminación, sintéticas y de césped naturalgi.
+                  Encontrarás canchas techadas, al aire libre, de futbol 5 - 7 -
+                  11, con iluminación, sintéticas y de césped naturalgi.
                 </p>
                 <div className="d-flex justify-content-around mt-auto">
-                  <Button style={{ background: "#72A1E5" }} variant="light me-2">
-                    <NavLink
-                      className="nav-link"
-                      to="/canchas"
-                    >
+                  <Button
+                    style={{ background: "#72A1E5" }}
+                    variant="light me-2"
+                  >
+                    <NavLink className="nav-link" to="/error404">
                       IR a Canchas + Turnos
                     </NavLink>
                   </Button>
@@ -177,14 +204,15 @@ const Home = () => {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">ECOMMERCE</h5>
                 <p className="card-text flex-grow-1">
-                  Contamos con una tienda deportiva de camisetas, pantalones, pelotas y todo lo que necesites.
+                  Contamos con una tienda deportiva de camisetas, pantalones,
+                  pelotas y todo lo que necesites.
                 </p>
                 <div className="d-flex justify-content-around mt-auto">
-                  <Button style={{ background: "#72A1E5" }} variant="light me-2">
-                    <NavLink
-                      className="nav-link"
-                      to="/productos"
-                    >
+                  <Button
+                    style={{ background: "#72A1E5" }}
+                    variant="light me-2"
+                  >
+                    <NavLink className="nav-link" to="/error404">
                       IR a Tienda + Ecommerce
                     </NavLink>
                   </Button>
@@ -203,14 +231,15 @@ const Home = () => {
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">ASADORES</h5>
                 <p className="card-text flex-grow-1">
-                  En los predios predios podrás disfrutar de asadores al aire libre para que puedas compartir de un buen asado con amigos.
+                  En los predios predios podrás disfrutar de asadores al aire
+                  libre para que puedas compartir de un buen asado con amigos.
                 </p>
                 <div className="d-flex justify-content-around mt-auto">
-                  <Button style={{ background: "#72A1E5" }} variant="light me-2">
-                    <NavLink
-                      className="nav-link"
-                      to="/error404"
-                    >
+                  <Button
+                    style={{ background: "#72A1E5" }}
+                    variant="light me-2"
+                  >
+                    <NavLink className="nav-link" to="/error404">
                       IR a Asadores + Reservas
                     </NavLink>
                   </Button>

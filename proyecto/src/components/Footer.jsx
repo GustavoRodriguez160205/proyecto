@@ -34,7 +34,7 @@ const Footer = () => {
                 </Link>
                 <Link to="/">
                   {" "}
-                  <img src={twiter} className="mx-2" height="50" />
+                  <img src={twiter} className="mx-2" height="40" />
                 </Link>
 
                 <Link to="/">
@@ -93,10 +93,7 @@ const Footer = () => {
       <div className="Last-footer">
         <p>
           {" "}
-          <p>
-            &copy; 2024 El CLUB FC. Todos los derechos
-            reservados.
-          </p>
+          <p>&copy; 2024 El CLUB FC. Todos los derechos reservados.</p>
         </p>
       </div>
     </>

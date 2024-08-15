@@ -6,23 +6,12 @@ import testApi from "../api/testApi";
 export const TablaUsuarios = () => {
   const [listaUsuarios, setListaUsuarios] = useState([]);
 
-  const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
-  const [edad, setEdad] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [estado, setEstado] = useState("true");
-  const [rol, setRol] = useState("");
-
-  const [showEditar, setShowEditar] = useState("");
+  const [showEditar, setShowEditar] = useState(false);
   const [usuarioEditar, setUsuarioEditar] = useState({});
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const getUsuarios = async () => {
     try {
       const resp = await testApi.get("/admin/usuarios");
-      console.log(resp);
       setListaUsuarios(resp.data.listaUsuarios);
     } catch (error) {
       console.log(error);
@@ -32,22 +21,42 @@ export const TablaUsuarios = () => {
   useEffect(() => {
     getUsuarios();
   }, []);
+
   const editarUsuario = (usuario) => {
-    setShowEditar(true);
     setUsuarioEditar(usuario);
+    setShowEditar(true);
   };
 
-  const handleChangeEditar = (propiedad, valor) => {
+  const handleChangeEditar = (e) => {
+    const { name, value } = e.target;
     setUsuarioEditar({
       ...usuarioEditar,
-      [propiedad]: valor,
+      [name]: value,
     });
   };
-  const editarUsuarioBackend = async (usuario) => {
-    const { name, edad, email, password, rol, estado, _id } = usuario;
+
+  const handleEditarUsuario = async (e) => {
+    e.preventDefault();
+    const { nombre_usuario, edad, email, password, rol, estado, _id } =
+      usuarioEditar;
+
+    // Validaciones básicas
+    if (!nombre_usuario || !edad || !email || !password || !rol) {
+      Swal.fire("Error", "Todos los campos deben estar completos", "error");
+      return;
+    }
+    if (edad < 18) {
+      Swal.fire("Error", "La edad debe ser mayor o igual a 18", "error");
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      Swal.fire("Error", "El email no es válido", "error");
+      return;
+    }
+
     try {
-      const resp = await testApi.put("/admin/editarUsuario", {
-        name,
+      await testApi.put("/admin/editarUsuario", {
+        nombre_usuario,
         edad,
         email,
         password,
@@ -55,112 +64,147 @@ export const TablaUsuarios = () => {
         estado,
         _id,
       });
+      Swal.fire("Éxito", "Usuario actualizado correctamente", "success");
       getUsuarios();
+      setShowEditar(false);
     } catch (error) {
       console.log(error);
+      Swal.fire(
+        "Error",
+        "POR SEGURIDAD TIENES QUE INGRESAR TODOS LOS CAMPOS PARA  PODER MODIFICAR",
+        "error"
+      );
     }
   };
-  const handleEditarUsuario = (e) => {
-    e.preventDefault();
-    //validar
-    editarUsuarioBackend(usuarioEditar);
+
+  const eliminarUsuario = async (usuarioId) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await testApi.delete(`/admin/eliminarUsuario/${usuarioId}`);
+          Swal.fire("Eliminado", "El usuario ha sido eliminado", "success");
+          getUsuarios();
+        } catch (error) {
+          console.log(error);
+          Swal.fire("Error", "No se pudo eliminar el usuario", "error");
+        }
+      }
+    });
   };
+
   return (
     <div>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Id Usuario</th>
-            <th>Nombre</th>
+            <th>Nombre y Apellido</th>
             <th>Edad</th>
             <th>Email</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {listaUsuarios.map((usuario) => {
-            return (
-              <tr>
-                <td>{usuario._id}</td>
-                <td>{usuario.name}</td>
-                <td>{usuario.edad}</td>
-                <td>{usuario.email}</td>
-                <td>
-                  <button
-                    onClick={() => editarUsuario(usuario)}
-                    className="btn btn-info "
-                  >
-                    Editar
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {listaUsuarios.map((usuario) => (
+            <tr key={usuario._id}>
+              <td>{usuario.nombre_usuario}</td>
+              <td>{usuario.edad}</td>
+              <td>{usuario.email}</td>
+              <td>
+                <Button
+                  variant="info"
+                  className="me-2"
+                  onClick={() => editarUsuario(usuario)}
+                >
+                  Editar
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => eliminarUsuario(usuario._id)}
+                >
+                  Eliminar
+                </Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
-      <Modal show={showEditar}>
+
+      {/* Modal para editar usuario */}
+      <Modal show={showEditar} onHide={() => setShowEditar(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Usuario</Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleEditarUsuario}>
           <Modal.Body>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Nombre Del Usuario</Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label>Nombre del Usuario</Form.Label>
               <Form.Control
                 type="text"
-                value={usuarioEditar.name}
-                onChange={(e) => handleChangeEditar("name", e.target.value)}
+                name="nombre_usuario"
+                value={usuarioEditar.nombre_usuario || ""}
+                onChange={handleChangeEditar}
+                required
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Edad</Form.Label>
               <Form.Control
                 type="number"
-                value={usuarioEditar.edad}
-                onChange={(e) => handleChangeEditar("edad", e.target.value)}
+                name="edad"
+                value={usuarioEditar.edad || ""}
+                onChange={handleChangeEditar}
+                required
+                min={18}
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="text"
-                value={usuarioEditar.email}
-                onChange={(e) => handleChangeEditar("email", e.target.value)}
+                type="email"
+                name="email"
+                value={usuarioEditar.email || ""}
+                onChange={handleChangeEditar}
+                required
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="text"
-                value={usuarioEditar.password}
-                onChange={(e) => setStock(e.target.value)}
+                type="password"
+                name="password"
+                value={usuarioEditar.password || ""}
+                onChange={handleChangeEditar}
+                required
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Rol</Form.Label>
-              <Form.Control
-                type="text"
-                value={usuarioEditar.rol}
-                onChange={(e) => setStock(e.target.value)}
-              />
+              <Form.Select
+                name="rol"
+                value={usuarioEditar.rol || ""}
+                onChange={handleChangeEditar}
+                required
+              >
+                <option value="">Selecciona un rol</option>
+                <option value="admin">Admin</option>
+                <option value="usuario">Usuario</option>
+              </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
+            <Form.Group className="mb-3">
               <Form.Label>Estado</Form.Label>
               <Form.Select
-                value={usuarioEditar.estado}
-                onChange={(e) => setEstado(e.target.value)}
+                name="estado"
+                value={usuarioEditar.estado || "true"}
+                onChange={handleChangeEditar}
               >
                 <option value="true">Activo</option>
                 <option value="false">Inactivo</option>
@@ -171,12 +215,7 @@ export const TablaUsuarios = () => {
             <Button variant="secondary" onClick={() => setShowEditar(false)}>
               Cerrar
             </Button>
-            <Button
-              style={{ background: " #72A1E5" }}
-              variant=" mt-2 mb-2"
-              type="submit"
-              onClick={() => setShowEditar(false)}
-            >
+            <Button style={{ background: "#72A1E5" }} type="submit">
               Guardar cambios
             </Button>
           </Modal.Footer>

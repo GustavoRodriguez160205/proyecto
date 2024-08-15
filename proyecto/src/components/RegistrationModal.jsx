@@ -6,19 +6,20 @@ import testApi from "../api/testApi";
 
 export const RegistrationModal = ({ show, handleClose }) => {
   const { login } = useContext(AuthContext);
-  const [name, setName] = useState("");
+  const [nombre_usuario, setNombre_usuario] = useState("");
   const [edad, setEdad] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const registroBackend = async (name, edad, email, password) => {
+  const registroBackend = async (nombre_usuario, edad, email, password) => {
     try {
       const resp = await testApi.post("/auth/registro", {
-        name,
+        nombre_usuario,
         edad,
         email,
         password,
       });
+
       const userData = resp.data;
       login(userData);
       Swal.fire({
@@ -48,7 +49,18 @@ export const RegistrationModal = ({ show, handleClose }) => {
 
   const handleRegistro = (e) => {
     e.preventDefault();
-    registroBackend(name, edad, email, password);
+
+    // Validar que la edad sea mayor de 18 años
+    if (parseInt(edad, 10) < 18) {
+      Swal.fire({
+        icon: "error",
+        title: "Edad insuficiente",
+        text: "Debes tener al menos 18 años para registrarte.",
+      });
+      return; // Evitar que continúe con el registro
+    }
+
+    registroBackend(nombre_usuario, edad, email, password);
   };
 
   return (
@@ -58,11 +70,11 @@ export const RegistrationModal = ({ show, handleClose }) => {
       </Modal.Header>
       <Modal.Body style={{ background: "#f5f3f3" }}>
         <Form onSubmit={handleRegistro}>
-          <Form.Group controlId="name">
-            <Form.Label>Nombre</Form.Label>
+          <Form.Group controlId="nombre_usuario">
+            <Form.Label>Nombre y Apellido</Form.Label>
             <Form.Control
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setNombre_usuario(e.target.value)}
               required
             />
           </Form.Group>

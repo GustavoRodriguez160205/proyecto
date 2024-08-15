@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Modal, Table } from "react-bootstrap";
+import Swal from "sweetalert2";
 import testApi from "../api/testApi";
 
 export const TablaCanchas = () => {
   const [listaCanchas, setListaCanchas] = useState([]);
   const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
+  const [nombre_cancha, setNombre_cancha] = useState("");
   const [imagen, setImagen] = useState("");
   const [cesped, setCesped] = useState("");
   const [tamanio, setTamanio] = useState("");
@@ -14,14 +15,13 @@ export const TablaCanchas = () => {
   const [estado, setEstado] = useState("true");
   const [showEditar, setShowEditar] = useState(false);
   const [canchaEditar, setCanchaEditar] = useState({});
-  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const getCanchas = async () => {
     try {
       const resp = await testApi.get("/admin/canchas");
-      console.log(resp.data.listaCanchas);
       setListaCanchas(resp.data.listaCanchas);
     } catch (error) {
       console.log(error);
@@ -32,10 +32,18 @@ export const TablaCanchas = () => {
     getCanchas();
   }, []);
 
-  const crearCanchaBackend = async (name, descripcion, imagen, cesped, tamanio, precio, estado) => {
+  const crearCanchaBackend = async (
+    nombre_cancha,
+    descripcion,
+    imagen,
+    cesped,
+    tamanio,
+    precio,
+    estado
+  ) => {
     try {
-      const resp = await testApi.post("/admin/crearCancha", {
-        name,
+      await testApi.post("/admin/crearCancha", {
+        nombre_cancha,
         descripcion,
         imagen,
         cesped,
@@ -44,6 +52,13 @@ export const TablaCanchas = () => {
         estado,
       });
       getCanchas();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Cancha Creado Exitosamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -51,16 +66,83 @@ export const TablaCanchas = () => {
 
   const handleCrearCancha = (e) => {
     e.preventDefault();
-    crearCanchaBackend(name, descripcion, imagen, cesped, tamanio, precio, estado);
+
+    if (
+      !nombre_cancha ||
+      !descripcion ||
+      !imagen ||
+      !cesped ||
+      !tamanio ||
+      !precio
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Todos los campos son obligatorios.",
+      });
+      return;
+    }
+
+    crearCanchaBackend(
+      nombre_cancha,
+      descripcion,
+      imagen,
+      cesped,
+      tamanio,
+      precio,
+      estado
+    );
+    handleClose();
   };
 
+  // const eliminarCanchaClick = async (id) => {
+  //   try {
+  //     await testApi.delete(`/admin/eliminarCancha/${id}`);
+  //     getCanchas();
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "Cancha eliminada",
+  //       text: "La Cancha ha sido eliminada con éxito.",
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Error",
+  //       text: "Hubo un problema al eliminar la Cancha.",
+  //     });
+  //   }
+  // };
+
   const eliminarCanchaClick = async (id) => {
-    try {
-      const resp = await testApi.delete(`/admin/eliminarCancha/${id}`);
-      getCanchas();
-    } catch (error) {
-      console.log(error);
-    }
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminarlo",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await testApi.delete(`/admin/eliminarCancha/${id}`);
+          getCanchas();
+          Swal.fire({
+            icon: "success",
+            title: "Cancha eliminada",
+            text: "La Cancha ha sido eliminada con éxito.",
+          });
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un problema al eliminar la Cancha.",
+          });
+        }
+      }
+    });
   };
 
   const editarCancha = (cancha) => {
@@ -76,10 +158,19 @@ export const TablaCanchas = () => {
   };
 
   const editarCanchaBackend = async (cancha) => {
-    const { name, descripcion, imagen, cesped, tamanio, precio, estado, _id } = cancha;
+    const {
+      nombre_cancha,
+      descripcion,
+      imagen,
+      cesped,
+      tamanio,
+      precio,
+      estado,
+      _id,
+    } = cancha;
     try {
-      const resp = await testApi.put("/admin/editarCancha", {
-        name,
+      await testApi.put("/admin/editarCancha", {
+        nombre_cancha,
         descripcion,
         imagen,
         cesped,
@@ -89,19 +180,51 @@ export const TablaCanchas = () => {
         _id,
       });
       getCanchas();
+      Swal.fire({
+        icon: "success",
+        title: "Cancha Actualizada",
+        text: "La Cancha ha sido actualizada con éxito.",
+      });
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un problema al actualizar la Cancha.",
+      });
     }
   };
 
   const handleEditarCancha = (e) => {
     e.preventDefault();
+
+    if (
+      !canchaEditar.nombre_cancha ||
+      !canchaEditar.descripcion ||
+      !canchaEditar.imagen ||
+      !canchaEditar.cesped ||
+      !canchaEditar.tamanio ||
+      !canchaEditar.precio
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Todos los campos son obligatorios.",
+      });
+      return;
+    }
+
     editarCanchaBackend(canchaEditar);
+    setShowEditar(false);
   };
 
   return (
     <div>
-      <Button style={{ background: "#72A1E5" }} variant=" mt-2 mb-2" onClick={handleShow}>
+      <Button
+        style={{ background: "#72A1E5" }}
+        variant=" mt-2 mb-2"
+        onClick={handleShow}
+      >
         + Agregar Cancha
       </Button>
       <Container>
@@ -113,27 +236,45 @@ export const TablaCanchas = () => {
             <Form onSubmit={handleCrearCancha}>
               <Form.Group className="mb-3" controlId="formNombre">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setNombre_cancha(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formDescripcion">
                 <Form.Label>Descripcion</Form.Label>
-                <Form.Control type="text" onChange={(e) => setDescripcion(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setDescripcion(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formImagen">
                 <Form.Label>Imagen</Form.Label>
-                <Form.Control type="text" onChange={(e) => setImagen(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setImagen(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formCesped">
                 <Form.Label>Cesped</Form.Label>
-                <Form.Control type="text" onChange={(e) => setCesped(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setCesped(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formTamanio">
-                <Form.Label>Tamaño</Form.Label>
-                <Form.Control type="text" onChange={(e) => setTamanio(e.target.value)} />
+                <Form.Label>Cantidad Jugadores</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setTamanio(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formPrecio">
                 <Form.Label>Precio</Form.Label>
-                <Form.Control type="text" onChange={(e) => setPrecio(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setPrecio(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEstado">
                 <Form.Label>Estado</Form.Label>
@@ -145,7 +286,12 @@ export const TablaCanchas = () => {
               <Button variant="secondary" onClick={handleClose}>
                 Cancelar
               </Button>
-              <Button style={{ background: "#72A1E5" }} variant=" mt-2 mb-2" type="submit" className="ms-2" onClick={handleClose}>
+              <Button
+                style={{ background: "#72A1E5" }}
+                variant=" mt-2 mb-2"
+                type="submit"
+                className="ms-2"
+              >
                 Guardar Cancha
               </Button>
             </Form>
@@ -158,14 +304,12 @@ export const TablaCanchas = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Id Cancha</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Imagen</th>
                 <th>Cesped</th>
-                <th>Tamaño</th>
+                <th>Cantidad Jugadores</th>
                 <th>Precio</th>
-                <th>Estado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -173,19 +317,23 @@ export const TablaCanchas = () => {
               {listaCanchas.map((canchas) => {
                 return (
                   <tr key={canchas._id}>
-                    <td>{canchas._id}</td>
-                    <td>{canchas.name}</td>
+                    <td>{canchas.nombre_cancha}</td>
                     <td>{canchas.descripcion}</td>
                     <td>{canchas.imagen}</td>
                     <td>{canchas.cesped}</td>
                     <td>{canchas.tamanio}</td>
                     <td>{canchas.precio}</td>
-                    <td>{canchas.estado}</td>
                     <td>
-                      <button onClick={() => editarCancha(canchas)} className="btn btn-warning">
+                      <button
+                        onClick={() => editarCancha(canchas)}
+                        className="btn btn-warning"
+                      >
                         Editar
                       </button>
-                      <button onClick={() => eliminarCanchaClick(canchas._id)} className="btn btn-danger ms-2">
+                      <button
+                        onClick={() => eliminarCanchaClick(canchas._id)}
+                        className="btn btn-danger ms-2"
+                      >
                         Eliminar
                       </button>
                     </td>
@@ -208,8 +356,10 @@ export const TablaCanchas = () => {
                 <Form.Label>Nombre de la Cancha</Form.Label>
                 <Form.Control
                   type="text"
-                  value={canchaEditar.name || ""}
-                  onChange={(e) => handleChangeEditar("name", e.target.value)}
+                  value={canchaEditar.nombre_cancha || ""}
+                  onChange={(e) =>
+                    handleChangeEditar("nombre_cancha", e.target.value)
+                  }
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEditarDescripcion">
@@ -217,7 +367,9 @@ export const TablaCanchas = () => {
                 <Form.Control
                   type="text"
                   value={canchaEditar.descripcion || ""}
-                  onChange={(e) => handleChangeEditar("descripcion", e.target.value)}
+                  onChange={(e) =>
+                    handleChangeEditar("descripcion", e.target.value)
+                  }
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEditarImagen">
@@ -237,11 +389,13 @@ export const TablaCanchas = () => {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEditarTamanio">
-                <Form.Label>Tamaño</Form.Label>
+                <Form.Label>Cantidad Jugadores</Form.Label>
                 <Form.Control
                   type="text"
                   value={canchaEditar.tamanio || ""}
-                  onChange={(e) => handleChangeEditar("tamanio", e.target.value)}
+                  onChange={(e) =>
+                    handleChangeEditar("tamanio", e.target.value)
+                  }
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formEditarPrecio">
@@ -264,11 +418,15 @@ export const TablaCanchas = () => {
               </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => setShowEditar(false)}>
-                Cerrar
-              </Button>
-              <Button style={{ background: "#72A1E5" }} variant=" mt-2 mb-2" type="submit" onClick={() => setShowEditar(false)}>
+              <Button
+                style={{ background: "#72A1E5" }}
+                variant=" mt-2 mb-2"
+                type="submit"
+              >
                 Guardar Cambios
+              </Button>
+              <Button variant="secondary" onClick={() => setShowEditar(false)}>
+                Cancelar
               </Button>
             </Modal.Footer>
           </Form>

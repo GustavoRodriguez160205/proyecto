@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Figure from 'react-bootstrap/Figure';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/Productos.css';
-import { Link } from 'react-router-dom';
-import testApi from '../api/testApi';
-import { CardImg } from 'react-bootstrap';
+import React, { useEffect, useState, useContext } from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
+import { Link } from "react-router-dom";
+import testApi from "../api/testApi";
+import { AuthContext } from "../context/AuthContext";
+import "../styles/Productos.css";
 
 function Productos() {
-
-  const [searchTerm,setSearchTerm] = useState('');
-  const [listaProductos, setListaProductos] = useState([])
+  const [searchTerm, setSearchTerm] = useState("");
+  const [listaProductos, setListaProductos] = useState([]);
+  const { addToCart } = useContext(AuthContext);
 
   const getProductos = async () => {
     try {
       const resp = await testApi.get("/admin/Productos");
-      console.log(resp);
       setListaProductos(resp.data.listaProductos);
+      console.log(resp.data.listaProductos);
     } catch (error) {
       console.log(error);
     }
@@ -34,66 +30,90 @@ function Productos() {
   return (
     <div>
       <Container className="mt-4">
-        <Image src="src/image/banner-productos.png" fluid className="centered-image" />
+        <Image
+          src="src/image/banner-productos.png"
+          fluid
+          className="centered-image"
+        />
       </Container>
-
-
 
       <Container>
-        <Col>
-        <div className='col'>
-              <h4 className='m-4'>Filtro de productos</h4>
-             <form className='d-flex flex-column flex-md-row justify-content-center align-content-end  bg-dark py-4 bordeForm'>
-                <div className='mb-3 filtroForm'>
-                  <label className='form-label text-light' for='name'>Productos</label>
-                   <input placeholder='Nombre del producto' name='name'  type="text" id='name' className='form-control' onChange={(e) => {
-                 setSearchTerm (e.target.value);
-                   }} />
-                 </div>
-              </form>
+        <div className="col">
+          <h4 className="m-4">Filtro de productos</h4>
+          <form className="d-flex flex-column flex-md-row justify-content-center align-content-end  bg-dark py-4 bordeForm">
+            <div className="mb-3 filtroForm">
+              <label
+                className="form-label text-light"
+                htmlFor="nombre_producto"
+              >
+                Productos
+              </label>
+              <input
+                placeholder="Nombre del producto"
+                id="nombre_producto"
+                type="text"
+                className="form-control"
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
             </div>
-            <div className='row'>
-            {
-               listaProductos.filter((productos) => {
-                if(searchTerm === ''){
-                  return productos
-                }else if(productos.name.toLowerCase().includes(searchTerm.toLowerCase())){
-                  return productos;
-                }{
-                  
-                }
-              })
-              .map((productos) => {
-                return (
-                  <Card style={{ width: '18rem', marginTop: "2rem", marginBottom: "2rem", marginLeft: '5%' }}>
-                    <CardImg src={productos.imagen}></CardImg>
-                    <Card.Body className="text-center">
-                 <Card.Title>{productos.name}</Card.Title>
-                 <Card.Title>${productos.precio}</Card.Title>
-                 <Card.Title>{productos.descripcion}</Card.Title>
-                 <Link to="/Camiseta">
-                <Button variant="primary">Ver más</Button>
-              </Link>
-               </Card.Body>
-                </Card>
-                )
-              })
-
-            }
-            </div>
-        </Col>
+          </form>
+        </div>
+        <div className="row">
+          {listaProductos
+            .filter((producto) => {
+              if (searchTerm === "") {
+                return producto;
+              } else if (
+                producto.nombre_producto
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                return producto;
+              }
+              return null;
+            })
+            .map((producto) => (
+              <Card
+                style={{
+                  width: "15rem",
+                  marginTop: "2rem",
+                  marginBottom: "2rem",
+                  marginLeft: "10%",
+                }}
+                key={producto._id}
+              >
+                <Card.Img
+                  src={producto.imagen}
+                  alt={producto.nombre_producto}
+                />
+                <Card.Body className="text-center">
+                  <Card.Title>{producto.nombre_producto}</Card.Title>
+                  <Card.Title>${producto.precio}</Card.Title>
+                  <Card.Title>{producto.descripcion}</Card.Title>
+                  <Button
+                    style={{ background: " #72A1E5" }}
+                    variant="mt-2 mb-2"
+                    onClick={() => addToCart(producto)}
+                  >
+                    Agregar al Carrito
+                  </Button>
+                </Card.Body>
+              </Card>
+            ))}
+        </div>
       </Container>
-
-     
 
       <Container>
-        <Image src="src/image/banner-marcas.png" fluid className="centered-image" />
+        <Image
+          src="src/image/banner-marcas.png"
+          fluid
+          className="centered-image"
+        />
       </Container>
-
-      
     </div>
   );
 }
 
 export default Productos;
-

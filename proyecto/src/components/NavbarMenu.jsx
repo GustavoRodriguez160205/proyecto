@@ -5,6 +5,7 @@ import logosinfondo from "../image/logosinfondo.png";
 import RegistrationModal from "./RegistrationModal";
 import LoginModal from "./LoginModal";
 import { AuthContext } from "../context/AuthContext";
+import { FaShoppingCart } from "react-icons/fa";
 import "../styles/navfoothome.css";
 
 const NavbarMenu = () => {
@@ -13,7 +14,7 @@ const NavbarMenu = () => {
     fontWeight: "bold",
   };
 
-  const { user, logout, isAdminLoggedIn } = useContext(AuthContext);
+  const { user, logout, isAdminLoggedIn, cartItems } = useContext(AuthContext);
 
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
@@ -27,6 +28,9 @@ const NavbarMenu = () => {
     logout();
     window.location.href = "/";
   };
+
+  // Calcular el total de productos en el carrito
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <div>
@@ -44,6 +48,7 @@ const NavbarMenu = () => {
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
             />
+            SOMOS FUTBOLEROS
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -63,6 +68,15 @@ const NavbarMenu = () => {
                     }
                   >
                     Home
+                  </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/canchas"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Canchas
                   </NavLink>
                   <NavLink
                     className="nav-link"
@@ -92,18 +106,10 @@ const NavbarMenu = () => {
                           isActive ? activeStyle : undefined
                         }
                       >
-                        Productos
+                        Tienda + Ecommerce
+                        {/* Productos */}
                       </NavLink>
 
-                      <NavLink
-                        className="nav-link"
-                        to="/canchas"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Canchas
-                      </NavLink>
                       <NavLink
                         className="nav-link"
                         to="/canchas1"
@@ -111,25 +117,8 @@ const NavbarMenu = () => {
                           isActive ? activeStyle : undefined
                         }
                       >
-                        Alquiler de Canchas
-                      </NavLink>
-                      <NavLink
-                        className="nav-link"
-                        to="/camiseta"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Camisetas
-                      </NavLink>
-                      <NavLink
-                        className="nav-link "
-                        to="/carrito"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
-                        }
-                      >
-                        Carrito
+                        Canchas + Turnos
+                        {/* Alquiler de Canchas */}
                       </NavLink>
                     </>
                   )}
@@ -164,6 +153,16 @@ const NavbarMenu = () => {
                 <Navbar.Text className="me-2">
                   Hola, {user.nombre_usuario || user.email}
                 </Navbar.Text>
+                <NavLink
+                  className="nav-link me-4"
+                  to="/carrito"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  <FaShoppingCart size={30} /> {/* Icono del carrito */}
+                  {totalItems > 0 && (
+                    <span className="cart-badge">{totalItems}</span> // Cantidad de productos
+                  )}
+                </NavLink>
                 <Button
                   className="button"
                   variant="secondary"

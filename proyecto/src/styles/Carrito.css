@@ -1,4 +1,4 @@
-.product-img {
+/* .product-img {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -29,4 +29,28 @@
 
 body {
     font-family: 'Gotham', sans-serif;
+} */
+ 
+
+/* nuevo css para el carrito */
+/* Carrito.css */
+.text-center {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
 }

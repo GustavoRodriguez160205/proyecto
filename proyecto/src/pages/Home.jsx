@@ -1,8 +1,10 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/home.css"; // Asegúrate de importar tu archivo CSS
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 // Importación de imágenes
 import imagen6 from "../image/imagen6.png";
@@ -34,6 +36,20 @@ import musica from "../image/musica.avif";
 import portadafemenino from "../image/portadafemenino.jpg";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
+
+  const handleRedirect = () => {
+    MySwal.fire({
+      title: "Para acceder, tienes que registrarte",
+      icon: "warning",
+      confirmButtonText: "OK",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("#"); // Redirige al registro
+      }
+    });
+  };
   return (
     <div
       className="carousel-container"
@@ -41,17 +57,28 @@ const Home = () => {
     >
       <Carousel data-bs-theme="dark">
         <Carousel.Item>
+          <img className="d-block w-100" src={portada1} alt="portada1" />
+          <Carousel.Caption>
+            <h3 style={{ color: " #343B3C" }}>
+              DESCUBRÍ LAS MEJORES CANCHAS DE ARGENTINA
+            </h3>
+            <h3 style={{ color: " #343B3C" }}>Fútbol 5, 7, 11 .</h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
           <img className="d-block w-100" src={portada6} alt="Portada 6" />
           <Carousel.Caption>
-            <h3>DESCUBRÍ LAS MEJORES CANCHAS DE ARGENTINA</h3>
-            <p>Fútbol 5, 7 .</p>
+            <h3 style={{ color: " #2D7AC0" }}>
+              DESCUBRÍ LAS MEJORES CANCHAS DE ARGENTINA
+            </h3>
+            <h3 style={{ color: " #2D7AC0" }}>Fútbol 5, 7, 11 .</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={portada4} alt="Portada 4" />
           <Carousel.Caption>
-            <h3>VENÍ A ENTRENAR CON TU EQUIPO</h3>
-            <p>Fútbol 5, 7 .</p>
+            <h3 style={{ color: "#2D7AC0 " }}>VENÍ A ENTRENAR CON TU EQUIPO</h3>
+            <h3 style={{ color: "#2D7AC0 " }}>Fútbol 5, 7, 11 .</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -61,15 +88,19 @@ const Home = () => {
             alt="Estacionamiento"
           />
           <Carousel.Caption>
-            <h3>SEGURIDAD Y ESTACIONAMIENTO PRIVADO</h3>
-            <p>24hs</p>
+            <h3 style={{ color: " #2D7AC0" }}>
+              SEGURIDAD Y ESTACIONAMIENTO PRIVADO
+            </h3>
+            <h3 style={{ color: " #2D7AC0" }}> 24hs</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src={imagen9} alt="Imagen 9" />
           <Carousel.Caption>
-            <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
-            <p>Fútbol 5, 7 .</p>
+            <h3 style={{ color: " #2D7AC0" }}>
+              MOMENTOS PARA TODA LA VIDA CON AMIGOS
+            </h3>
+            <h3 style={{ color: " #2D7AC0" }}>Fútbol 5, 7, 11 .</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -79,8 +110,10 @@ const Home = () => {
             alt="Portada Femenino"
           />
           <Carousel.Caption>
-            <h3>MOMENTOS PARA TODA LA VIDA CON AMIGOS</h3>
-            <p>Fútbol 5, 7 .</p>
+            <h3 style={{ color: " #2D7AC0" }}>
+              MOMENTOS PARA TODA LA VIDA CON AMIGOS
+            </h3>
+            <h3 style={{ color: "#2D7AC0 " }}>Fútbol 5, 7, 11 .</h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -184,10 +217,9 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
+                    onClick={handleRedirect} // Agrega esta función al botón
                   >
-                    <NavLink className="nav-link" to="/error404">
-                      IR a Canchas + Turnos
-                    </NavLink>
+                    IR a Canchas + Turnos
                   </Button>
                 </div>
               </div>
@@ -211,10 +243,9 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
+                    onClick={handleRedirect}
                   >
-                    <NavLink className="nav-link" to="/error404">
-                      IR a Tienda + Ecommerce
-                    </NavLink>
+                    IR a Tienda + Ecommerce
                   </Button>
                 </div>
               </div>
@@ -238,10 +269,9 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
+                    onClick={handleRedirect}
                   >
-                    <NavLink className="nav-link" to="/error404">
-                      IR a Asadores + Reservas
-                    </NavLink>
+                    IR a Asadores + Reservas
                   </Button>
                 </div>
               </div>

@@ -31,10 +31,7 @@ export const AppRouter = () => {
           path="/productos"
           element={user ? <Productos /> : <Navigate to="/login" />}
         />
-        <Route
-          path="/canchas"
-          element={user ? <Galeria /> : <Navigate to="/login" />}
-        />
+
         <Route
           path="/camiseta"
           element={user ? <Camiseta /> : <Navigate to="/login" />}
@@ -44,7 +41,7 @@ export const AppRouter = () => {
           element={user ? <Carrito /> : <Navigate to="/login" />}
         />
         <Route path="/contacto" element={<Contacto />} />
-        <Route path="/galeria" element={<Galeria />} />
+        <Route path="/canchas" element={<Galeria />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route
           path="/administrador"

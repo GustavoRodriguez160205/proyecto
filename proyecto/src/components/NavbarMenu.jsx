@@ -29,13 +29,12 @@ const NavbarMenu = () => {
     window.location.href = "/";
   };
 
-  // Calcular el total de productos en el carrito
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <div>
       <Navbar
-        className="navbar-shadow"
+        className="navbar-shadow fixed-top"
         style={{ background: "#f5f3f3" }}
         expand="lg"
       >
@@ -158,9 +157,9 @@ const NavbarMenu = () => {
                   to="/carrito"
                   style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
-                  <FaShoppingCart size={30} /> {/* Icono del carrito */}
+                  <FaShoppingCart size={30} />
                   {totalItems > 0 && (
-                    <span className="cart-badge">{totalItems}</span> // Cantidad de productos
+                    <span className="cart-badge">{totalItems}</span>
                   )}
                 </NavLink>
                 <Button

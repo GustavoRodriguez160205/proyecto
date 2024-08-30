@@ -12,6 +12,7 @@ const Nosotros = () => {
   return (
     <>
       <Container className="d-flex justify-content-center flex-column  align-content-center align-items-center  pt-5 mt-5 ">
+        <br />
         <h1 className="title text-center">NUESTRO EQUIPO - DESARROLLO</h1>
 
         <Row className="d-flex justify-content-center w-100 pt-5">

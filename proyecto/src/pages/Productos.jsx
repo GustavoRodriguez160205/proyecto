@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import testApi from "../api/testApi";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/Productos.css";
-
+import bannerproductos from "../image/bannerproductos.png";
+import bannermarcas from "../image/bannermarcas.png";
 function Productos() {
   const [searchTerm, setSearchTerm] = useState("");
   const [listaProductos, setListaProductos] = useState([]);
@@ -29,12 +30,12 @@ function Productos() {
 
   return (
     <div>
+      <br />
+      <br />
+      <br />
+      <br />
       <Container className="mt-4">
-        <Image
-          src="src/image/banner-productos.png"
-          fluid
-          className="centered-image"
-        />
+        <Image src={bannerproductos} fluid className="centered-image" />
       </Container>
 
       <Container>
@@ -106,11 +107,7 @@ function Productos() {
       </Container>
 
       <Container>
-        <Image
-          src="src/image/banner-marcas.png"
-          fluid
-          className="centered-image"
-        />
+        <Image src={bannermarcas} fluid className="centered-image" />
       </Container>
     </div>
   );

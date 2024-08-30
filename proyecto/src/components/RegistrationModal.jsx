@@ -50,14 +50,13 @@ export const RegistrationModal = ({ show, handleClose }) => {
   const handleRegistro = (e) => {
     e.preventDefault();
 
-    // Validar que la edad sea mayor de 18 años
     if (parseInt(edad, 10) < 18) {
       Swal.fire({
         icon: "error",
         title: "Edad insuficiente",
         text: "Debes tener al menos 18 años para registrarte.",
       });
-      return; // Evitar que continúe con el registro
+      return;
     }
 
     registroBackend(nombre_usuario, edad, email, password);

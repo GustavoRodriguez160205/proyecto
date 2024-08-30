@@ -103,40 +103,42 @@ export const TablaUsuarios = () => {
 
   return (
     <div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Nombre y Apellido</th>
-            <th>Edad</th>
-            <th>Email</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {listaUsuarios.map((usuario) => (
-            <tr key={usuario._id}>
-              <td>{usuario.nombre_usuario}</td>
-              <td>{usuario.edad}</td>
-              <td>{usuario.email}</td>
-              <td>
-                <Button
-                  variant="info"
-                  className="me-2"
-                  onClick={() => editarUsuario(usuario)}
-                >
-                  Editar
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => eliminarUsuario(usuario._id)}
-                >
-                  Eliminar
-                </Button>
-              </td>
+      <div className="table-responsive">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Nombre y Apellido</th>
+              <th>Edad</th>
+              <th>Email</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {listaUsuarios.map((usuario) => (
+              <tr key={usuario._id}>
+                <td>{usuario.nombre_usuario}</td>
+                <td>{usuario.edad}</td>
+                <td>{usuario.email}</td>
+                <td>
+                  <Button
+                    variant="info"
+                    className="me-2"
+                    onClick={() => editarUsuario(usuario)}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => eliminarUsuario(usuario._id)}
+                  >
+                    Eliminar
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
       {/* Modal para editar usuario */}
       <Modal show={showEditar} onHide={() => setShowEditar(false)}>

@@ -2,11 +2,10 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../styles/home.css"; // Asegúrate de importar tu archivo CSS
+import "../styles/home.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-// Importación de imágenes
 import imagen6 from "../image/imagen6.png";
 import imagen7 from "../image/imagen7.jpg";
 import imagen8 from "../image/imagen8.jpg";

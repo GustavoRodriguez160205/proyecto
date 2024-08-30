@@ -14,30 +14,28 @@ const Footer = () => {
         <div className="container text-center">
           <div className="row">
             <div className="col-md-6 col-lg-5 col-12 ft-1 ">
-              <Link to="/">
-                {" "}
-                <img src={logosinfondo} className="mx-2" height="110" />
-              </Link>
+              <img src={logosinfondo} className="mx-2" height="110" />
+
               <h3>
                 <f3>El Club FC</f3>
               </h3>
               <h6>CANCHAS 5,7,11 - CAMPEONATOS - VESTUARIOS </h6>
 
               <div>
-                <Link to="/">
+                <Link to="/*">
                   {" "}
                   <img src={facebook} className="mx-2" height="50" />
                 </Link>
-                <Link to="/">
+                <Link to="/*">
                   {" "}
                   <img src={instagram} className="mx-2" height="50" />
                 </Link>
-                <Link to="/">
+                <Link to="/*">
                   {" "}
                   <img src={twiter} className="mx-2" height="40" />
                 </Link>
 
-                <Link to="/">
+                <Link to="/*">
                   {" "}
                   <img src={whatsapp} className="mx-2" height="50" />
                 </Link>
@@ -48,29 +46,19 @@ const Footer = () => {
               <h5>Servicios</h5>
               <ul>
                 <li className="nav-item">
-                  <a className="" href="">
-                    Asadores
-                  </a>
+                  <a className="">Asadores</a>
                 </li>
                 <li className="nav-item">
-                  <a className="" href="">
-                    Cantina
-                  </a>
+                  <a className="">Cantina</a>
                 </li>
                 <li className="nav-item">
-                  <a className="" href="">
-                    Salon Fiestas
-                  </a>
+                  <a className="">Salon Fiestas</a>
                 </li>
                 <li className="nav-item">
-                  <a className="" href="">
-                    Tienda Deportiva
-                  </a>
+                  <a className="">Tienda Deportiva</a>
                 </li>
                 <li className="nav-item">
-                  <a className="" href="">
-                    Musica
-                  </a>
+                  <a className="">Musica</a>
                 </li>
                 <li className="nav-item" style={{ color: "blue" }}>
                   <a className="" href="">

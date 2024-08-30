@@ -1,9 +1,14 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import deposito from "../image/deposito.png";
 
 function Contacto() {
   return (
     <div className="container text-dark">
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="row">
         <div className="col-md-6 mt-4">
           <h2>¡Escribinos!</h2>
@@ -59,7 +64,12 @@ function Contacto() {
               ></textarea>
             </div>
             <br />
-            <button type="submit" className="btn btn-primary">
+            <button
+              style={{ background: "#72A1E5" }}
+              variant="light me-2"
+              type="submit"
+              className="btn btn- link"
+            >
               Enviar
             </button>
           </form>
@@ -69,7 +79,7 @@ function Contacto() {
           {" "}
           {/* Agregamos mt-4 para dar margen superior */}
           <Card>
-            <Card.Img src="src/image/deposito.png" />
+            <Card.Img src={deposito} />
           </Card>
         </div>
       </div>

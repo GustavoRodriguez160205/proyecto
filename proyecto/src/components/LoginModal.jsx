@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { jwtDecode } from "jwt-decode"; // Importa correctamente jwt-decode
+import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../context/AuthContext";
 import testApi from "../api/testApi";
 
@@ -19,20 +19,17 @@ const LoginModal = ({ show, handleClose }) => {
       });
 
       const token = resp.data.token;
-      localStorage.setItem("token", token); // Guarda el token en el localStorage
+      localStorage.setItem("token", token);
 
-      // Decodifica el token para extraer la información del usuario
       const decodedToken = jwtDecode(token);
       const userData = {
         nombre_usuario: decodedToken.nombre_usuario,
-        id_usuario: decodedToken.id_usuario, // Asegúrate de que id_usuario esté presente
-        //  email: decodedToken.email,
+        id_usuario: decodedToken.id_usuario,
         rol: decodedToken.rol,
       };
       console.log("Datos del usuario decodificados:", userData);
 
-      login(userData); // Guarda los datos del usuario en el contexto o estado global
-
+      login(userData);
       Swal.fire({
         position: "center",
         icon: "success",
@@ -68,7 +65,6 @@ const LoginModal = ({ show, handleClose }) => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Validación para administrador
     if (email === "elclubfc@gmail.com" && password === "123456") {
       const adminUser = {
         name: "Administrador",
@@ -85,7 +81,6 @@ const LoginModal = ({ show, handleClose }) => {
       });
       handleClose();
     } else {
-      // Validación para usuarios regulares
       loginBackend(email, password);
     }
   };

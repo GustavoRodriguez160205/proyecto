@@ -14,7 +14,7 @@ export const PaginaCancha = () => {
   const getCanchas = async () => {
     try {
       const resp = await testApi.get("/admin/canchas");
-      console.log(resp.data.listaCanchas);
+      // console.log(resp.data.listaCanchas);
       setListaCanchas(resp.data.listaCanchas);
     } catch (error) {
       console.log(error);

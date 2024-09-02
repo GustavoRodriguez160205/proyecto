@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -33,21 +33,31 @@ import ecommerce from "../image/ecommerce.jpg";
 import asadores from "../image/asadores.jpg";
 import musica from "../image/musica.avif";
 import portadafemenino from "../image/portadafemenino.jpg";
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
+  const { user } = useContext(AuthContext);
 
-  const handleRedirect = () => {
-    MySwal.fire({
-      title: "Para acceder, tienes que registrarte",
-      icon: "warning",
-      confirmButtonText: "OK",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("#"); // Redirige al registro
-      }
-    });
+  const handleRedirect = (path) => {
+    // const isRegistered = /* Lógica para determinar si el usuario está registrado */;
+
+    // if (!isRegistered) {
+    if (!user) {
+      // Si no hay un usuario registrado
+      MySwal.fire({
+        title: "Para acceder, tienes que registrarte",
+        icon: "warning",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("#"); // Redirige al registro
+        }
+      });
+    } else {
+      navigate(path);
+    }
   };
   return (
     <div
@@ -216,7 +226,7 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
-                    onClick={handleRedirect} // Agrega esta función al botón
+                    onClick={() => handleRedirect("/canchas1")} // Agrega esta función al botón
                   >
                     IR a Canchas + Turnos
                   </Button>
@@ -242,7 +252,7 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
-                    onClick={handleRedirect}
+                    onClick={() => handleRedirect("/productos")}
                   >
                     IR a Tienda + Ecommerce
                   </Button>
@@ -268,7 +278,7 @@ const Home = () => {
                   <Button
                     style={{ background: "#72A1E5" }}
                     variant="light me-2"
-                    onClick={handleRedirect}
+                    onClick={() => handleRedirect("/*")}
                   >
                     IR a Asadores + Reservas
                   </Button>

@@ -50,11 +50,31 @@ export const RegistrationModal = ({ show, handleClose }) => {
   const handleRegistro = (e) => {
     e.preventDefault();
 
-    if (parseInt(edad, 10) < 18) {
+    // if (parseInt(edad, 10) < 18) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Edad insuficiente",
+    //     text: "Debes tener al menos 18 años para registrarte.",
+    //   });
+    //   return;
+    // }
+    const edadInt = parseInt(edad, 10);
+    const nombreRegex = /^[a-zA-Z\s]+$/; // Solo permite letras y espacios
+
+    if (!nombreRegex.test(nombre_usuario)) {
       Swal.fire({
         icon: "error",
-        title: "Edad insuficiente",
-        text: "Debes tener al menos 18 años para registrarte.",
+        title: "Nombre inválido",
+        text: "El nombre solo debe contener letras y espacios.",
+      });
+      return;
+    }
+
+    if (edadInt < 18 || edadInt > 80) {
+      Swal.fire({
+        icon: "error",
+        title: "Edad inválida",
+        text: "La edad debe estar entre 18 y 80 años.",
       });
       return;
     }

@@ -27,7 +27,7 @@ const LoginModal = ({ show, handleClose }) => {
         id_usuario: decodedToken.id_usuario,
         rol: decodedToken.rol,
       };
-      console.log("Datos del usuario decodificados:", userData);
+      // console.log("Datos del usuario decodificados:", userData);
 
       login(userData);
       Swal.fire({

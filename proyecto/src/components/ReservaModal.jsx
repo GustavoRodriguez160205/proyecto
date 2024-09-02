@@ -54,7 +54,7 @@ const ReservaModal = ({ show, handleClose, cancha }) => {
         horaFin: parseInt(endTime, 10),
       });
 
-      console.log(resp);
+      // console.log(resp);
 
       Swal.fire({
         position: "center",

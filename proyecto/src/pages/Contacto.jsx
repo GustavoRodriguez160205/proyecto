@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import Swal from "sweetalert2";
 import deposito from "../image/deposito.png";
 
 function Contacto() {
+  const [nombreApellido, setNombreApellido] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  const handleNombreChange = (e) => {
+    const nombreRegex = /^[a-zA-Z\s]+$/; // Solo permite letras y espacios
+    if (!nombreRegex.test(e.target.value)) {
+      Swal.fire({
+        icon: "error",
+        title: "Nombre inválido",
+        text: "El nombre solo debe contener letras y espacios.",
+      });
+    } else {
+      setNombreApellido(e.target.value);
+    }
+  };
+  const handleMensajeChange = (e) => {
+    const maxLength = 100;
+    if (e.target.value.length > maxLength) {
+      Swal.fire({
+        icon: "error",
+        title: "Mensaje demasiado largo",
+        text: `El mensaje no puede exceder los ${maxLength} caracteres.`,
+      });
+    } else {
+      setMensaje(e.target.value);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      icon: "success",
+      title: "Mensaje enviado",
+      text: "Tu mensaje ha sido enviado con éxito.",
+    });
+  };
+
   return (
     <div className="container text-dark">
       <br />
@@ -12,7 +50,7 @@ function Contacto() {
       <div className="row">
         <div className="col-md-6 mt-4">
           <h2>¡Escribinos!</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="nombreApellido">Nombre y Apellido</label>
               <input
@@ -21,6 +59,8 @@ function Contacto() {
                 id="nombreApellido"
                 minLength="5"
                 maxLength="50"
+                value={nombreApellido}
+                onChange={handleNombreChange}
                 required
               />
             </div>
@@ -51,7 +91,6 @@ function Contacto() {
               <select className="form-control" id="motivoConsulta" required>
                 <option value="turnos">Turnos</option>
                 <option value="compras">Compras</option>
-                <option value="soporte">Soporte técnico</option>
               </select>
             </div>
             <div className="form-group">
@@ -60,6 +99,9 @@ function Contacto() {
                 className="form-control"
                 id="mensaje"
                 rows="4"
+                maxLength="100"
+                value={mensaje}
+                onChange={handleMensajeChange}
                 required
               ></textarea>
             </div>

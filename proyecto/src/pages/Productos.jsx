@@ -18,7 +18,7 @@ function Productos() {
     try {
       const resp = await testApi.get("/admin/Productos");
       setListaProductos(resp.data.listaProductos);
-      console.log(resp.data.listaProductos);
+      // console.log(resp.data.listaProductos);
     } catch (error) {
       console.log(error);
     }
